@@ -4,8 +4,7 @@ import { ModalSignUpComponent } from '../modal-sign-up/modal-sign-up.component';
 
 @Component({
   selector: 'app-modal-sign-in',
-  standalone: true,
-  imports: [],
+  standalone: false,
   templateUrl: './modal-sign-in.component.html',
   styleUrl: './modal-sign-in.component.scss'
 })

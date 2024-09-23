@@ -5,15 +5,20 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { ApiService } from './api.service';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { ModalSignInComponent } from './modal-sign-in/modal-sign-in.component';
+import { ModalSignUpComponent } from './modal-sign-up/modal-sign-up.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ModalSignInComponent,
+    ModalSignUpComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [ApiService, provideAnimationsAsync()],
   bootstrap: [AppComponent]
