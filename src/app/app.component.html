@@ -6,9 +6,9 @@
 </head>
 
 <body>
-    <button id="sign-in">SIGN IN</button>
+    <button mat-button (click)="openDialog()" id="sign-in">SIGN IN</button>
     <form (ngSubmit)="onSubmit()">
-        <textarea id="product" name="product" [(ngModel)]="product" placeholder="Wyszukaj produkt"></textarea><br><br>
+        <textarea id="product" name="product" [(ngModel)]="product" placeholder="Search for product"></textarea><br><br>
         <button type="submit">Submit</button>
     </form>
 
