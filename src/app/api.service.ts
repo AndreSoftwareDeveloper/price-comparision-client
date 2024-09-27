@@ -22,7 +22,7 @@ export class ApiService {
                 return response;
             }),
             catchError((httpError) => {
-                return throwError(httpError.error);
+                return throwError(() => new Error(httpError.error));
             })
         );
     }
