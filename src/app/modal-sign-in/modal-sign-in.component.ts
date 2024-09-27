@@ -38,14 +38,14 @@ export class ModalSignInComponent {
     loginData.set('username', this.signInForm.emailOrUsername);
     loginData.set('password', this.signInForm.password);
   
-    return this.apiService.signIn(loginData.toString()).subscribe(
-      () => {
+    return this.apiService.signIn(loginData.toString()).subscribe({
+      next: () => {
         alert("Zalogowane"); // TODO: Przekieruj na stronę dla zalogowanych użytkowników
       },
-      (error) => {
+      error: (error) => {
         alert(error);
       }
-    );
+  });
   }
 
   openSignUpModal(): void {

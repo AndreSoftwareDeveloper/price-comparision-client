@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+
 import { ApiService } from '../api.service';
 
 interface SignUpForm {
@@ -47,13 +48,13 @@ export class ModalSignUpComponent {
       password: this.signUpForm.password
   };
 
-    return this.apiService.signUp(userData).subscribe(
-      () => {
+    return this.apiService.signUp(userData).subscribe({
+      next: () => {
         alert("dobrze") //TODO message in pop-up
       },
-      (error) => {
+      error: (error) => {
         alert("źle: " + error)
       }
-    );
+  });
   }
 }
