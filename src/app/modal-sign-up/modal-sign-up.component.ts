@@ -27,14 +27,12 @@ export class ModalSignUpComponent {
   }
 
   submitForm() {
-    console.log(this.signUpForm)
-
     if (!this.signUpForm.username ||
-      !this.signUpForm.email ||
-      !this.signUpForm.password ||
-      !this.signUpForm.repeatPassword
+        !this.signUpForm.email ||
+        !this.signUpForm.password ||
+        !this.signUpForm.repeatPassword
     ) {
-      alert("Fill all fields.")
+      alert("Fill all required fields.")
       return;
     }
 
@@ -46,12 +44,12 @@ export class ModalSignUpComponent {
     const userData = {
       username: this.signUpForm.username,
       email: this.signUpForm.email,
-      password: this.signUpForm.password,
+      password: this.signUpForm.password
   };
 
-    return this.apiService.post(userData).subscribe(
+    return this.apiService.signUp(userData).subscribe(
       () => {
-        alert("dobrze")
+        alert("dobrze") //TODO message in pop-up
       },
       (error) => {
         alert("źle: " + error)
