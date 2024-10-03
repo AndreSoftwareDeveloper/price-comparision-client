@@ -16,6 +16,11 @@
       <div class="form-group">
         <label for="password">Password</label>
         <input type="password" name="password" [(ngModel)]="signUpForm.password" id="password" placeholder="Enter password" required>
+        <br>
+        
+        <p *ngIf="passwordRequirementsVisibility">
+          The password must be at least 8 characters long, contain at least one lowercase and uppercase letter, a number and a special character.
+        </p>
       </div>
 
       <div class="form-group">

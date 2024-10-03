@@ -34,7 +34,8 @@ export class ApiService {
                 return response;
             }),
             catchError((httpError) => {
-                return throwError(() => new Error(httpError.error));
+              console.error(httpError);
+              return throwError(() => httpError.status);
             })
         );
     }
@@ -49,7 +50,7 @@ export class ApiService {
             return response;
           }),
           catchError((httpError) => {
-            const errorMessage = httpError.error?.detail || 'Wystąpił błąd podczas logowania.';
+            const errorMessage = httpError.error?.detail || 'An error occurred while logging in.';
             return throwError(() => new Error(errorMessage));
           })
         );

@@ -17,6 +17,7 @@ interface SignUpForm {
 })
 export class ModalSignUpComponent {
   signUpForm: SignUpForm;
+  passwordRequirementsVisibility: boolean = false;
 
   constructor(private apiService: ApiService) {
     this.signUpForm = {
@@ -53,7 +54,8 @@ export class ModalSignUpComponent {
         alert("dobrze") //TODO message in pop-up
       },
       error: (error) => {
-        alert("źle: " + error)
+        if (error === 422)
+          this.passwordRequirementsVisibility = true        
       }
   });
   }
