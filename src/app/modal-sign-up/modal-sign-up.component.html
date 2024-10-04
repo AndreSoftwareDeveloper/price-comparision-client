@@ -15,18 +15,17 @@
   
       <div class="form-group">
         <label for="password">Password</label>
-        <input type="password" name="password" [(ngModel)]="signUpForm.password" id="password" placeholder="Enter password" required>
-        <br>
-        
-        <p *ngIf="passwordRequirementsVisibility">
-          The password must be at least 8 characters long, contain at least one lowercase and uppercase letter, a number and a special character.
-        </p>
+        <input type="password" name="password" [(ngModel)]="signUpForm.password" id="password" placeholder="Enter password" required>        
       </div>
 
       <div class="form-group">
         <label for="repeat-password">Repeat password</label>
         <input type="password" name="repeatPassword" [(ngModel)]="signUpForm.repeatPassword" id="repeat-password" placeholder="Repeat password" required>
       </div>
+    
+      <p *ngIf="passwordRequirementsVisibility" class="warning">
+        The password must be at least 8 characters long, contain at least one lowercase and uppercase letter, a number and a special character.
+      </p>
   
       <button (click)="submitForm()" type="submit" class="submit-button">Sign Up</button>
     </form>
