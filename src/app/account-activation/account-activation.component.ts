@@ -17,7 +17,7 @@ export class AccountActivationComponent {
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       this.token = params.get('token') ?? "";
-      let token_exists = this.apiService.checkActivationToken(this.token)
+      const token_exists = this.apiService.checkActivationToken(this.token)
       console.log(token_exists)
     })
   }

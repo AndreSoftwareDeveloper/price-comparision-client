@@ -49,6 +49,7 @@ export class ModalSignInComponent {
   }
 
   openSignUpModal(): void {
+    this.signInRef.close();
     this.signInRef.afterClosed().subscribe(() => {
       this.dialog.open(ModalSignUpComponent);
     });
