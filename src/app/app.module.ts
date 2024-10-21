@@ -8,10 +8,13 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { ModalSignInComponent } from './modal-sign-in/modal-sign-in.component';
 import { ModalSignUpComponent } from './modal-sign-up/modal-sign-up.component';
 import { AccountActivationComponent } from './account-activation/account-activation.component';
+import { AppRoutingModule } from './app-routing.module';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    HomeComponent,
     ModalSignInComponent,
     ModalSignUpComponent,
     AccountActivationComponent
@@ -20,7 +23,8 @@ import { AccountActivationComponent } from './account-activation/account-activat
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    AppRoutingModule
   ],
   providers: [ApiService, provideAnimationsAsync()],
   bootstrap: [AppComponent]
