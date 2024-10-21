@@ -7,12 +7,14 @@ import { ApiService } from './api.service';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { ModalSignInComponent } from './modal-sign-in/modal-sign-in.component';
 import { ModalSignUpComponent } from './modal-sign-up/modal-sign-up.component';
+import { AccountActivationComponent } from './account-activation/account-activation.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ModalSignInComponent,
-    ModalSignUpComponent
+    ModalSignUpComponent,
+    AccountActivationComponent
   ],
   imports: [
     BrowserModule,
