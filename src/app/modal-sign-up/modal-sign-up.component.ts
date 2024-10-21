@@ -51,7 +51,7 @@ export class ModalSignUpComponent {
 
     return this.apiService.signUp(userData).subscribe({
       next: () => {
-        alert("dobrze") //TODO message in pop-up
+        alert("git") //TODO message in pop-up
       },
       error: (error) => {
         if (error === 422)
