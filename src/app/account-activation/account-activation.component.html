@@ -1,2 +1,9 @@
-<p *ngIf="token_valid" class="invalid-token-message roboto-medium">The activation link is invalid or has expired.</p>
-<a *ngIf="token_valid" href="/home" class="redirect roboto-regular">Go to the home page</a>
+<ng-container *ngIf="token_valid; else invalid_token_message">
+    <p class="invalid-token-message roboto-medium">Your account has been activated!</p>
+  </ng-container>
+  
+  <ng-template #invalid_token_message>
+    <p class="invalid-token-message roboto-medium">The activation link is invalid or has expired.</p>
+  </ng-template>
+
+<a href="/home" class="redirect roboto-regular">Go to the home page</a>
