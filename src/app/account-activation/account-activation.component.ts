@@ -19,15 +19,15 @@ export class AccountActivationComponent {
     this.route.queryParamMap.subscribe(params => {
       this.token = params.get('token') ?? "";
 
-      this.apiService.checkActivationToken(this.token).subscribe(
-        (message) => {
-          console.log(message)
-          this.token_valid = true;
+      this.apiService.checkActivationToken(this.token).subscribe({
+        next: (message) => {
+            console.log(message);
+            this.token_valid = true;
         },
-        (error) => {
-          console.log(error)
+        error: (error) => {
+            console.log(error);
         }
-      )
+    });
     })
   }
 }

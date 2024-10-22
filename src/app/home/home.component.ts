@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 
 import { ApiService } from '../api.service';
-import { ModalSignInComponent } from '../modal-sign-in/modal-sign-in.component';
 
 @Component({
   selector: 'home-root',  
@@ -13,11 +11,7 @@ export class HomeComponent {
   title: string = 'price-comparision-client';
   product: string = ''; 
 
-  constructor(private apiService: ApiService, private dialog: MatDialog) {}
-
-  openDialog() {
-    this.dialog.open(ModalSignInComponent);
-  }
+  constructor(private apiService: ApiService) {}  
 
   onSubmit() {
     this.apiService.getOffers(this.product).subscribe({

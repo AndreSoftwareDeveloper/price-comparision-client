@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+
+import { ModalSignInComponent } from './modal-sign-in/modal-sign-in.component';
 
 @Component({
   selector: 'app-root',  
@@ -6,5 +9,9 @@ import { Component } from '@angular/core';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  constructor() {}
+  constructor(private dialog: MatDialog) {}
+
+  openDialog() {
+    this.dialog.open(ModalSignInComponent);
+  }
 }
