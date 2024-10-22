@@ -11,14 +11,23 @@ import { ApiService } from '../api.service';
 })
 export class AccountActivationComponent {
   token: string = ""
+  token_valid: boolean = false
 
   constructor(private apiService: ApiService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(params => {
+    this.route.queryParamMap.subscribe(params => {
       this.token = params.get('token') ?? "";
-      const token_exists = this.apiService.checkActivationToken(this.token)
-      console.log(token_exists)
+
+      this.apiService.checkActivationToken(this.token).subscribe(
+        (message) => {
+          console.log(message)
+          this.token_valid = true;
+        },
+        (error) => {
+          console.log(error)
+        }
+      )
     })
   }
 }

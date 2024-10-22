@@ -20,7 +20,7 @@ export class ApiService {
     private api_endpoint = 'http://127.0.0.1:8000';
     private register_endpoint = 'http://127.0.0.1:8000/register';
     private login_endpoint = 'http://127.0.0.1:8000/login';
-    private account_activation_endpoint = 'http://127.0.0.1:8000/check_token'
+    private account_activation_endpoint = 'http://127.0.0.1:8002/check_token' //todo port 8000
 
     constructor(private http: HttpClient) {}
     
@@ -58,7 +58,8 @@ export class ApiService {
       }
 
       checkActivationToken(token: string) {
-        return this.http.post(this.account_activation_endpoint, token).pipe(
+        const params = new HttpParams().set('activation_token', token);
+        return this.http.post(`${this.account_activation_endpoint}`, {}, { params }).pipe(
             map((response) => {
               return response;
             }),

@@ -45,7 +45,7 @@ export class ModalSignInComponent {
       error: (error) => {
         alert(error);
       }
-  });
+    });
   }
 
   openSignUpModal(): void {
