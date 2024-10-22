@@ -1,3 +1,2 @@
-<p>account-activation works!</p>
-
-<p *ngIf="token_valid">dupa</p>
+<p *ngIf="token_valid" class="invalid-token-message roboto-medium">The activation link is invalid or has expired.</p>
+<a *ngIf="token_valid" href="/home" class="redirect roboto-regular">Go to the home page</a>
