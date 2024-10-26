@@ -16,19 +16,21 @@ interface SignUpForm {
   styleUrl: './modal-sign-up.component.scss'
 })
 export class ModalSignUpComponent {
-  signUpForm: SignUpForm;
-  passwordRequirementsVisibility: boolean = false;
-
-  constructor(private apiService: ApiService) {
-    this.signUpForm = {
-      username: '',
-      email: '',
-      password: '',
-      repeatPassword: ''
-    }
+  signUpForm: SignUpForm = {
+    username: '',
+    email: '',
+    password: '',
+    repeatPassword: ''
   }
 
+  passwordRequirementsVisibility: boolean = false;
+  errorMessage: string = "";
+
+  constructor(private apiService: ApiService) {}
+
   submitForm() {
+    this.passwordRequirementsVisibility = false
+
     if (!this.signUpForm.username ||
         !this.signUpForm.email ||
         !this.signUpForm.password ||
@@ -51,13 +53,21 @@ export class ModalSignUpComponent {
 
     return this.apiService.signUp(userData).subscribe({
       next: () => {
-        alert("git") //TODO message in pop-up
+        alert(`Your account is almost ready!\n
+          Check Your mailbox. We have sent a message to the address provided.\n
+          Follow the instructions provided in the message.\n\n
+          Can't find the message? Sending Your message may take a while.\n
+          Wait for a moment or check spam.`)
       },
-      error: ( {error} ) => {
-        if (error.status === 422) //password doesn't meat complexity requirements
-          this.passwordRequirementsVisibility = true
-        else
-          alert(error.detail)                       
+      error: ( {error, status} ) => {
+        this.passwordRequirementsVisibility = true
+
+        if (status === 422) { //password doesn't meat complexity requirements or email is not valid          
+          const [{ msg }] = error.detail
+          this.errorMessage = msg
+        }
+        else 
+          this.errorMessage = error.detail
       }
     });
   }

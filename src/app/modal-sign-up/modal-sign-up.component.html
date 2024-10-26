@@ -10,7 +10,7 @@
 
       <div class="form-group">
         <label for="email">Email</label>
-        <input type="text" name="email" [(ngModel)]="signUpForm.email" id="email" placeholder="Enter Your email" required>
+        <input type="email" name="email" [(ngModel)]="signUpForm.email" id="email" placeholder="Enter Your email" required>
       </div>      
   
       <div class="form-group">
@@ -24,7 +24,7 @@
       </div>
     
       <p *ngIf="passwordRequirementsVisibility" class="warning">
-        The password must be at least 8 characters long, contain at least one lowercase and uppercase letter, a number and a special character.
+        {{ errorMessage }}
       </p>
   
       <button (click)="submitForm()" type="submit" class="submit-button">Sign Up</button>
