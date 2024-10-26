@@ -20,7 +20,7 @@ export class ApiService {
     private api_endpoint = 'http://127.0.0.1:8000';
     private register_endpoint = 'http://127.0.0.1:8000/register';
     private login_endpoint = 'http://127.0.0.1:8000/login';
-    private account_activation_endpoint = 'http://127.0.0.1:8000/check_token'
+    private account_verification_endpoint = 'http://127.0.0.1:8000/verify_account'
 
     constructor(private http: HttpClient) {}
     
@@ -35,8 +35,7 @@ export class ApiService {
                 return response;
             }),
             catchError((httpError) => {
-              console.error(httpError);
-              return throwError(() => httpError.status);
+              return throwError(() => httpError);
             })
         );
     }
@@ -58,8 +57,8 @@ export class ApiService {
       }
 
       checkActivationToken(token: string) {
-        const params = new HttpParams().set('activation_token', token);
-        return this.http.post(`${this.account_activation_endpoint}`, {}, { params }).pipe(
+        const params = new HttpParams().set('verification_token', token);
+        return this.http.post(`${this.account_verification_endpoint}`, {}, { params }).pipe(
             map((response) => {
               return response;
             }),

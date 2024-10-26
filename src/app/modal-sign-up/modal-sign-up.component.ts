@@ -47,16 +47,18 @@ export class ModalSignUpComponent {
       username: this.signUpForm.username,
       email: this.signUpForm.email,
       password: this.signUpForm.password
-  };
+    };
 
     return this.apiService.signUp(userData).subscribe({
       next: () => {
         alert("git") //TODO message in pop-up
       },
-      error: (error) => {
-        if (error === 422)
-          this.passwordRequirementsVisibility = true        
+      error: ( {error} ) => {
+        if (error.status === 422) //password doesn't meat complexity requirements
+          this.passwordRequirementsVisibility = true
+        else
+          alert(error.detail)                       
       }
-  });
+    });
   }
 }
