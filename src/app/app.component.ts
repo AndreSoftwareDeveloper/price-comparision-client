@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
 import { ModalSignInComponent } from './modal-sign-in/modal-sign-in.component';
+import { ModalSignedUpInfoComponent } from './modal-signed-up-info/modal-signed-up-info.component';
 
 @Component({
   selector: 'app-root',  

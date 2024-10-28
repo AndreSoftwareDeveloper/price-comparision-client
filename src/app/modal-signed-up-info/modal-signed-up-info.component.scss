@@ -1,0 +1,38 @@
+.modal-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+    background-color: #4a90e2;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    color: white;
+    font-size: larger;
+    height: 100%;
+    text-align: justify;
+  }
+  
+h2 {
+   margin-bottom: 20px;
+   font-size: 24px;
+   color: #ffffff;
+   text-shadow: 1px 1px #000000;
+}
+
+.ok {
+  padding: 12px 20px;
+  width: 20%;
+  background-color: #0056b3;
+  font-weight: bold;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+  
+.ok:hover {
+  background-color: #003f7f;
+}
+  

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 
 import { ApiService } from '../api.service';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { ModalSignedUpInfoComponent } from '../modal-signed-up-info/modal-signed-up-info.component';
 
 interface SignUpForm {
   username: string;
@@ -22,11 +24,10 @@ export class ModalSignUpComponent {
     password: '',
     repeatPassword: ''
   }
-
   passwordRequirementsVisibility: boolean = false;
   errorMessage: string = "";
 
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService, private dialog: MatDialog, private dialogRef: MatDialogRef<ModalSignUpComponent>) {}
 
   submitForm() {
     this.passwordRequirementsVisibility = false
@@ -53,11 +54,15 @@ export class ModalSignUpComponent {
 
     return this.apiService.signUp(userData).subscribe({
       next: () => {
-        alert(`Your account is almost ready!\n
-          Check Your mailbox. We have sent a message to the address provided.\n
-          Follow the instructions provided in the message.\n\n
-          Can't find the message? Sending Your message may take a while.\n
-          Wait for a moment or check spam.`)
+        this.dialogRef.close();
+        this.dialogRef.afterClosed().subscribe(
+          {
+            next: () => this.dialog.open(ModalSignedUpInfoComponent, {
+              width: '35%',
+              height: '38%'
+            })
+          }
+        );
       },
       error: ( {error, status} ) => {
         this.passwordRequirementsVisibility = true
