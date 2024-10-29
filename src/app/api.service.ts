@@ -50,7 +50,7 @@ export class ApiService {
             return response;
           }),
           catchError((httpError) => {
-            const errorMessage = 'incorrect email or password.';
+            const errorMessage = 'Incorrect email or password.';
             return throwError(() => new Error(errorMessage));
           })
         );

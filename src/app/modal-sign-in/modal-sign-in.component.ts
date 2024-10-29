@@ -46,9 +46,9 @@ export class ModalSignInComponent {
         next: () => {
           alert("Zalogowane"); // TODO: Przekieruj na stronę dla zalogowanych użytkowników
         },
-        error: (error) => {
+        error: (error: Error) => {
           this.signInErrorVisibility = true
-          this.errorMessage = error
+          this.errorMessage = error.message
         }
       }
     );
