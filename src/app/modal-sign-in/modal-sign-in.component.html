@@ -14,6 +14,10 @@
   
       <button (click)="submitForm()" type="submit" class="submit-button">Log In</button>
     </form>
+
+    <p *ngIf="signInErrorVisibility" class="warning">
+        {{ errorMessage }}
+    </p>
   
     <div class="signup-link">
       <a href="javascript:void(0);" (click)="openSignUpModal()">Don't have an account?</a>

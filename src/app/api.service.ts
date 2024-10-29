@@ -50,7 +50,7 @@ export class ApiService {
             return response;
           }),
           catchError((httpError) => {
-            const errorMessage = httpError.error?.detail || 'An error occurred while logging in.';
+            const errorMessage = 'incorrect email or password.';
             return throwError(() => new Error(errorMessage));
           })
         );
