@@ -18,7 +18,6 @@ interface SignInForm {
 export class ModalSignInComponent {
   signInForm: SignInForm;
   signInErrorVisibility: boolean | undefined
-  errorMessage: string = "";
 
   constructor(private signInRef: MatDialogRef<ModalSignInComponent>, 
               private dialog: MatDialog,
@@ -46,9 +45,8 @@ export class ModalSignInComponent {
         next: () => {
           alert("Zalogowane"); // TODO: Przekieruj na stronę dla zalogowanych użytkowników
         },
-        error: (error: Error) => {
+        error: () => {
           this.signInErrorVisibility = true
-          this.errorMessage = error.message
         }
       }
     );

@@ -49,21 +49,21 @@ export class ApiService {
           map((response) => {
             return response;
           }),
-          catchError((httpError) => {
+          catchError(() => {
             const errorMessage = 'Incorrect email or password.';
             return throwError(() => new Error(errorMessage));
           })
         );
       }
 
-      checkActivationToken(token: string) {
+      checkVerificationToken(token: string) {
         const params = new HttpParams().set('verification_token', token);
-        return this.http.post(`${this.account_verification_endpoint}`, {}, { params }).pipe(
+        return this.http.post(this.account_verification_endpoint, {}, { params }).pipe(
             map((response) => {
               return response;
             }),
             catchError((error) => {
-              return error;
+              return throwError(() => new Error(error.message));
             })
         );
       }

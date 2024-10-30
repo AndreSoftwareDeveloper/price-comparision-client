@@ -17,15 +17,15 @@ export class AccountActivationComponent {
 
   ngOnInit(): void {
     this.route.queryParamMap.subscribe(params => {
-      this.token = params.get('token') ?? "";
+      this.token = params.get('verification_token') ?? "";
 
-      this.apiService.checkActivationToken(this.token).subscribe({
+      this.apiService.checkVerificationToken(this.token).subscribe({
         next: (message) => {
-            console.log(message);
-            this.token_valid = true;
+          this.token_valid = true;
+          console.log(message);            
         },
         error: (error) => {
-            console.log(error);
+          console.log(error);
         }
     });
     })
