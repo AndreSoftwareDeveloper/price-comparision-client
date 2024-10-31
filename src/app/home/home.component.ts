@@ -17,9 +17,8 @@ export class HomeComponent {
   constructor(private apiService: ApiService, private dialog: MatDialog) {}  
 
   onSubmit() {
-    this.apiService.getOffers(this.product).subscribe({
+    this.apiService.searchOffers(this.product).subscribe({
       next: (data: DataResponse) => {
-
         if (data.products.length == 0) {
           console.log(`No offers for: ${this.product}`)
           return;

@@ -24,7 +24,7 @@ export class ApiService {
 
     constructor(private http: HttpClient) {}
     
-    getOffers(nameOrCategory: string): Observable<any> {
+    searchOffers(nameOrCategory: string): Observable<any> {
         const params = new HttpParams().set('name_or_category', nameOrCategory);
         return this.http.get<any>(`${this.api_endpoint}`, { params });
     }
