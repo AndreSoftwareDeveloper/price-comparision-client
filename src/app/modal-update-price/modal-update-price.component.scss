@@ -1,0 +1,53 @@
+.modal-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+    background-color: #4a90e2;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    color: white;
+    font-size: larger;
+    height: 100%;
+    text-align: center;
+  }
+  
+h3 {
+   margin-bottom: 20px;
+   color: #ffffff;
+   text-shadow: 1px 1px #000000;
+}
+
+.submit {
+  padding: 12px 20px;
+  background-color: #0056b3;
+  font-weight: bold;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+  
+.submit:hover {
+  background-color: #003f7f;
+}
+
+input {
+  width: 70%;
+  padding: 10px;
+  background-color: #d0e9ff;
+  border: 1px solid #b3d7ff;
+  border-radius: 20px;
+  font-size: 16px;
+  box-sizing: border-box;
+  color: #333;
+  transition: border 0.3s ease;
+  margin-top: 4%;
+}
+  
+input:focus {
+  border-color: #007bff;
+  outline: none;
+}

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 
 import { ApiService } from '../api.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalUpdatePriceComponent } from '../modal-update-price/modal-update-price.component';
 
 @Component({
   selector: 'home-root',  
@@ -9,9 +11,10 @@ import { ApiService } from '../api.service';
 })
 export class HomeComponent {
   title: string = 'price-comparision-client';
-  product: string = ''; 
-
-  constructor(private apiService: ApiService) {}  
+  product: string = '';
+  data?: DataResponse;
+  
+  constructor(private apiService: ApiService, private dialog: MatDialog) {}  
 
   onSubmit() {
     this.apiService.getOffers(this.product).subscribe({
@@ -26,31 +29,12 @@ export class HomeComponent {
           data.products.forEach( (product) => {
             if (typeof product.price === 'string')
               product.price = parseFloat(product.price.replace(' zł', '').replace(',', '.'));            
-            }          
-          )
+            })
           data.products.sort((a: Product, b: Product) => {
             return (a.price as number) - (b.price as number);
           });
 
-          const offersElement = document.getElementById('offers');
-
-          if (offersElement) {
-            let output = `<p>The best offer: <br> 
-              Shop: ${data.products[0].shop}, Product: ${data.products[0].name}, Price: ${data.products[0].price}</p>`;
-
-            output += `<p>Other offers:</p>`;
-
-            for (let i = 1; i < data.products.length; i++) {
-              output += `<p>
-                Shop: ${data.products[i].shop}, 
-                Product: ${data.products[i].name}, 
-                Price: ${data.products[i].price}
-              </p>`;
-            }
-
-            offersElement.innerHTML = output;
-          }
-          return;
+          this.data = data;
         }
       },
 
@@ -58,6 +42,11 @@ export class HomeComponent {
         console.error('Error occured:', err);
       }
     });
+  }
+
+  openUpdatePriceModal() {
+    console.log("dupa")
+    this.dialog.open(ModalUpdatePriceComponent)
   }
 }
 

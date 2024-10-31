@@ -3,4 +3,22 @@
     <button type="submit">Submit</button>
 </form>
 
-<div id="offers"></div>
+<div id="offers">
+    <div *ngIf="data">
+        <p>The best offer: <br>
+          Shop: {{ data.products[0].shop }},
+          Product: {{ data.products[0].name }},
+          Price: {{ data.products[0].price }}
+          <button type="submit" (click)="openUpdatePriceModal()">Update price</button>
+        </p>
+      
+        <p>Other offers:</p>
+      
+        <p *ngFor="let product of data.products.slice(1)">
+          Shop: {{ product.shop }},
+          Product: {{ product.name }},
+          Price: {{ product.price }}
+          <button type="submit" (click)="openUpdatePriceModal()">Update price</button>
+        </p>
+      </div>
+</div>
