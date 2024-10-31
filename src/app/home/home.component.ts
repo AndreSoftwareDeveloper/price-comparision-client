@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 
 import { ApiService } from '../api.service';
-import { MatDialog } from '@angular/material/dialog';
 import { ModalUpdatePriceComponent } from '../modal-update-price/modal-update-price.component';
 
 @Component({
@@ -45,7 +45,6 @@ export class HomeComponent {
   }
 
   openUpdatePriceModal() {
-    console.log("dupa")
     this.dialog.open(ModalUpdatePriceComponent)
   }
 }
