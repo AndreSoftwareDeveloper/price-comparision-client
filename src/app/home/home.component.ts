@@ -17,30 +17,34 @@ export class HomeComponent {
   constructor(private apiService: ApiService, private dialog: MatDialog) {}  
 
   onSubmit() {
-    this.apiService.searchOffers(this.product).subscribe({
-      next: (data: DataResponse) => {
-        if (data.products.length == 0) {
-          console.log(`No offers for: ${this.product}`)
-          return;
-        }
-        
-        else {          
-          data.products.forEach( (product) => {
-            if (typeof product.price === 'string')
-              product.price = parseFloat(product.price.replace(' zł', '').replace(',', '.'));            
-            })
-          data.products.sort((a: Product, b: Product) => {
-            return (a.price as number) - (b.price as number);
-          });
+    this.apiService.searchOffers(this.product).subscribe(
+      {
+        next: (data: DataResponse) => {
+          console.log(data)
+          if (data.products.length == 0) {
+            console.log(`No offers for: ${this.product}`)
+            return;
+          }
+          
+          else {          
+            data.products.forEach( (product) => {
+              if (typeof product.price === 'string')
+                product.price = parseFloat(product.price.replace(' zł', '').replace(',', '.'));            
+              }
+            )
+            data.products.sort((a: Product, b: Product) => {
+              return (a.price as number) - (b.price as number);
+            });
 
-          this.data = data;
-        }
-      },
+            this.data = data;
+          }
+        },
 
-      error: (err) => {
-        console.error('Error occured:', err);
+        error: (err) => {
+          console.error('Error occured:', err);
+        }
       }
-    });
+    );
   }
 
   openUpdatePriceModal() {
@@ -49,6 +53,7 @@ export class HomeComponent {
 }
 
 interface Product {
+  id: number;
   category: string;
   name: string;
   shop: string;

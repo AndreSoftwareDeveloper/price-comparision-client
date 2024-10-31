@@ -6,6 +6,7 @@
 <div id="offers">
     <div *ngIf="data">
         <p>The best offer: <br>
+          ID: {{ data.products[0].id }} <!-- TODO: should not be exposed -->
           Shop: {{ data.products[0].shop }},
           Product: {{ data.products[0].name }},
           Price: {{ data.products[0].price }}
@@ -15,6 +16,7 @@
         <p>Other offers:</p>
       
         <p *ngFor="let product of data.products.slice(1)">
+          ID: {{ product.id }}
           Shop: {{ product.shop }},
           Product: {{ product.name }},
           Price: {{ product.price }}
