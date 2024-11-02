@@ -12,6 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
 import { ModalSignInComponent } from './modal-sign-in/modal-sign-in.component';
 import { ModalSignUpComponent } from './modal-sign-up/modal-sign-up.component';
+import { ModalUpdatePriceComponent } from './modal-update-price/modal-update-price.component';
 
 @NgModule({ 
   declarations: [
@@ -19,7 +20,8 @@ import { ModalSignUpComponent } from './modal-sign-up/modal-sign-up.component';
     AppComponent,
     HomeComponent,
     ModalSignInComponent,
-    ModalSignUpComponent
+    ModalSignUpComponent,
+    ModalUpdatePriceComponent
   ],
   imports: [
     AppRoutingModule,

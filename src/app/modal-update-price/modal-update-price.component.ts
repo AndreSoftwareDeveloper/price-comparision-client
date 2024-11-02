@@ -1,4 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+
+interface UpdatePriceForm {
+  id: number;
+  newPrice: number;
+}
 
 @Component({
   selector: 'app-modal-update-price',
@@ -7,5 +13,17 @@ import { Component } from '@angular/core';
   styleUrl: './modal-update-price.component.scss'
 })
 export class ModalUpdatePriceComponent {
-  constructor() {}
+  updatePriceForm: UpdatePriceForm
+
+  constructor(@Inject(MAT_DIALOG_DATA) public data: { id: number }) {
+    this.updatePriceForm = {
+      id: this.data.id,
+      newPrice: 0
+    }
+  }
+
+  updatePrice() {
+    console.log(this.updatePriceForm.id)
+    console.log(this.updatePriceForm.newPrice)
+  }
 }

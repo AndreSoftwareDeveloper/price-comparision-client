@@ -10,7 +10,7 @@
           Shop: {{ data.products[0].shop }},
           Product: {{ data.products[0].name }},
           Price: {{ data.products[0].price }}
-          <button type="submit" (click)="openUpdatePriceModal()">Update price</button>
+          <button type="submit" (click)="openUpdatePriceModal(data.products[0].id)">Update price</button>
         </p>
       
         <p>Other offers:</p>
@@ -20,7 +20,7 @@
           Shop: {{ product.shop }},
           Product: {{ product.name }},
           Price: {{ product.price }}
-          <button type="submit" (click)="openUpdatePriceModal()">Update price</button>
+          <button type="submit" (click)="openUpdatePriceModal(product.id)">Update price</button>
         </p>
       </div>
 </div>

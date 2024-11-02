@@ -20,7 +20,6 @@ export class HomeComponent {
     this.apiService.searchOffers(this.product).subscribe(
       {
         next: (data: DataResponse) => {
-          console.log(data)
           if (data.products.length == 0) {
             console.log(`No offers for: ${this.product}`)
             return;
@@ -47,8 +46,10 @@ export class HomeComponent {
     );
   }
 
-  openUpdatePriceModal() {
-    this.dialog.open(ModalUpdatePriceComponent)
+  openUpdatePriceModal(id: number) {
+    this.dialog.open(ModalUpdatePriceComponent, {
+      data: {id: id}
+    })
   }
 }
 

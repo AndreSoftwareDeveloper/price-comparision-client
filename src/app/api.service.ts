@@ -25,25 +25,25 @@ export class ApiService {
     constructor(private http: HttpClient) {}
     
     searchOffers(nameOrCategory: string): Observable<any> {
-        const params = new HttpParams().set('name_or_category', nameOrCategory);
-        return this.http.get<any>(`${this.api_endpoint}`, { params });
+      const params = new HttpParams().set('name_or_category', nameOrCategory);
+      return this.http.get<any>(`${this.api_endpoint}`, { params });
     }
 
     signUp(userData: any) {
-        return this.http.post(this.register_endpoint, userData).pipe(
-            map((response) => {
-                return response;
-            }),
-            catchError((httpError) => {
-              return throwError(() => httpError);
-            })
-        );
+      return this.http.post(this.register_endpoint, userData).pipe(
+        map((response) => {
+          return response;
+        }),
+        catchError((httpError) => {
+          return throwError(() => httpError);
+        })
+      );
     }
 
     signIn(userData: any) {    
-        const headers = new HttpHeaders({
-          'Content-Type': 'application/x-www-form-urlencoded',
-        });
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/x-www-form-urlencoded',
+      });
 
         return this.http.post<LoginResponse>(this.login_endpoint, userData, { headers }).pipe(
           map((response) => {
