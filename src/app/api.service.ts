@@ -56,15 +56,15 @@ export class ApiService {
         );
       }
 
-      checkVerificationToken(token: string) {
-        const params = new HttpParams().set('verification_token', token);
-        return this.http.post(this.account_verification_endpoint, {}, { params }).pipe(
-            map((response) => {
-              return response;
-            }),
-            catchError((error) => {
-              return throwError(() => new Error(error.message));
-            })
-        );
-      }
+    checkVerificationToken(token: string) {
+      const params = new HttpParams().set('verification_token', token);
+      return this.http.post(this.account_verification_endpoint, {}, { params }).pipe(
+        map((response) => {
+          return response;
+        }),
+        catchError((error) => {
+          return throwError(() => new Error(error.message));
+        })
+      );
+    }
 }
