@@ -43,7 +43,7 @@ export class ModalSignInComponent {
     return this.apiService.signIn(loginData.toString()).subscribe(
       {
         next: () => {
-          alert("Zalogowane"); // TODO: Przekieruj na stronę dla zalogowanych użytkowników
+          alert("Signed in"); // TODO: Redirect to page for logged in users
         },
         error: () => {
           this.signInErrorVisibility = true

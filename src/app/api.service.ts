@@ -1,7 +1,8 @@
 import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-
 import { catchError, map, Observable, throwError } from "rxjs";
+
+import { PriceUpdateData } from "./modal-update-price/modal-update-price.component";
 
 export class LoginResponse {
     access_token: string;
@@ -61,6 +62,17 @@ export class ApiService {
       return this.http.post(this.account_verification_endpoint, {}, { params }).pipe(
         map((response) => {
           return response;
+        }),
+        catchError((error) => {
+          return throwError(() => new Error(error.message));
+        })
+      );
+    }
+
+    updatePrice(updateData: PriceUpdateData) {
+      return this.http.patch('http://127.0.0.1:8001', updateData).pipe(
+        map((response) => {
+          console.log(response)
         }),
         catchError((error) => {
           return throwError(() => new Error(error.message));

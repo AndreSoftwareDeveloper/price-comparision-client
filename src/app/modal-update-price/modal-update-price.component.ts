@@ -1,9 +1,11 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
-interface UpdatePriceForm {
+import { ApiService } from '../api.service';
+
+export interface PriceUpdateData {
   id: number;
-  newPrice: number;
+  new_price: number;
 }
 
 @Component({
@@ -13,17 +15,25 @@ interface UpdatePriceForm {
   styleUrl: './modal-update-price.component.scss'
 })
 export class ModalUpdatePriceComponent {
-  updatePriceForm: UpdatePriceForm
+  priceUpdateData: PriceUpdateData
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: { id: number }) {
-    this.updatePriceForm = {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: { id: number }, private apiService: ApiService) {
+    this.priceUpdateData = {
       id: this.data.id,
-      newPrice: 0
+      new_price: 0
     }
   }
 
   updatePrice() {
-    console.log(this.updatePriceForm.id)
-    console.log(this.updatePriceForm.newPrice)
+    this.apiService.updatePrice(this.priceUpdateData).subscribe(
+      {
+        next: (next) => {
+          console.log(next) //TODO modal
+        },
+        error: (error) => {
+          console.log(error)
+        }
+      }
+    )
   }
 }
