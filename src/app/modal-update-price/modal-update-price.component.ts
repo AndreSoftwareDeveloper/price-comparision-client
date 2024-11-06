@@ -4,15 +4,8 @@ import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dial
 
 import { ApiService } from '../api.service';
 import { ModalGeneralInfoComponent } from '../modal-general-info/modal-general-info.component';
-
-export interface PriceUpdateData {
-  id: number;
-  new_price: number;
-}
-
-export interface ApiResponse {
-  message: string;
-}
+import { ApiResponse } from '../models/api-response.model';
+import { PriceUpdateData } from '../models/price-update-data.model';
 
 @Component({
   selector: 'app-modal-update-price',

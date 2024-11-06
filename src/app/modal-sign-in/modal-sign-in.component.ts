@@ -3,11 +3,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 import { ModalSignUpComponent } from '../modal-sign-up/modal-sign-up.component';
 import { ApiService } from '../api.service';
-
-interface SignInForm {
-  emailOrUsername: string;
-  password: string;
-}
+import { SignInForm } from '../models/sign-in-form.model';
 
 @Component({
   selector: 'app-modal-sign-in',
