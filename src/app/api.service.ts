@@ -61,7 +61,7 @@ export class ApiService {
       const params = new HttpParams().set('verification_token', token);
       return this.http.post(this.account_verification_endpoint, {}, { params }).pipe(
         map((response) => {
-          return response;
+          return response
         }),
         catchError((error) => {
           return throwError(() => new Error(error.message));
@@ -70,9 +70,9 @@ export class ApiService {
     }
 
     updatePrice(updateData: PriceUpdateData) {
-      return this.http.patch('http://127.0.0.1:8001', updateData).pipe(
+      return this.http.patch(this.api_endpoint, updateData).pipe(
         map((response) => {
-          console.log(response)
+          return response
         }),
         catchError((error) => {
           return throwError(() => new Error(error.message));
