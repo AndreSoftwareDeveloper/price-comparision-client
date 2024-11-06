@@ -4,6 +4,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { ApiService } from '../api.service';
 import { ModalUpdatePriceComponent } from '../modal-update-price/modal-update-price.component';
 import { ModalGeneralInfoComponent } from '../modal-general-info/modal-general-info.component';
+import { DataResponse } from '../models/data-response.model';
+import { Product } from '../models/product.model';
 
 @Component({
   selector: 'home-root',  
@@ -41,8 +43,9 @@ export class HomeComponent {
           }
         },
 
-        error: (err) => {
-          console.error('Error occured:', err);
+        error: (error) => {
+          const message = `An error occurred: ${error.message}`
+          this.dialog.open(ModalGeneralInfoComponent, { data: message })
         }
       }
     );
@@ -50,19 +53,7 @@ export class HomeComponent {
 
   openUpdatePriceModal(id: number) {
     this.dialog.open(ModalUpdatePriceComponent, {
-      data: {id: id}
+      data: { id: id }
     })
   }
-}
-
-interface Product {
-  id: number;
-  category: string;
-  name: string;
-  shop: string;
-  price: string | number;
-}
-
-export interface DataResponse {
-  products: Product[];
 }

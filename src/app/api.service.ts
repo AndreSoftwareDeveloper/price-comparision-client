@@ -2,19 +2,11 @@ import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { catchError, map, Observable, throwError } from "rxjs";
 
-import { ApiResponse, PriceUpdateData } from "./modal-update-price/modal-update-price.component";
-import { DataResponse } from "./home/home.component";
-import { User } from "./modal-sign-up/modal-sign-up.component";
-
-export class LoginResponse {
-    access_token: string;
-    token_type: string;
-    
-    constructor(access_token: string, token_type: string) {
-      this.access_token = access_token;
-      this.token_type = token_type;
-    }
-}
+import { DataResponse } from "./models/data-response.model";
+import { User } from "./models/user.model";
+import { ApiResponse } from "./models/api-response.model";
+import { PriceUpdateData } from "./models/price-update-data.model";
+import { LoginResponse } from "./models/login-response.model";
 
 @Injectable({
     providedIn: 'root',
@@ -49,16 +41,16 @@ export class ApiService {
         'Content-Type': 'application/x-www-form-urlencoded',
       });
 
-        return this.http.post<LoginResponse>(this.login_endpoint, userData, { headers }).pipe(
-          map((response) => {
-            return response;
-          }),
-          catchError(() => {
-            const errorMessage = 'Incorrect email or password.';
-            return throwError(() => new Error(errorMessage));
-          })
-        );
-      }
+      return this.http.post<LoginResponse>(this.login_endpoint, userData, { headers }).pipe(
+        map((response) => {
+          return response;
+        }),
+        catchError(() => {
+          const errorMessage = 'Incorrect email or password.';
+          return throwError(() => new Error(errorMessage));
+        })
+      );
+    }
 
     checkVerificationToken(token: string) {
       const params = new HttpParams().set('verification_token', token);

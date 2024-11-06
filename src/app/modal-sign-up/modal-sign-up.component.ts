@@ -3,13 +3,8 @@ import { Component } from '@angular/core';
 import { ApiService } from '../api.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ModalSignedUpInfoComponent } from '../modal-signed-up-info/modal-signed-up-info.component';
-
-interface SignUpForm {
-  username: string;
-  email: string;
-  password: string;
-  repeatPassword: string;
-}
+import { SignUpForm } from '../models/sign-up-form.model';
+import { User } from '../models/user.model';
 
 @Component({
   selector: 'app-modal-sign-up',
@@ -80,10 +75,4 @@ export class ModalSignUpComponent {
       }
     });
   }
-}
-
-export interface User {
-  username: string,
-  email: string,
-  password: string
 }
