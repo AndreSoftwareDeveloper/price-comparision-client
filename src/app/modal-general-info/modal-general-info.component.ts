@@ -2,15 +2,15 @@ import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-modal-updated-price-info',
+  selector: 'app-modal-general-info',
   standalone: false,
-  templateUrl: './modal-updated-price-info.component.html',
-  styleUrl: './modal-updated-price-info.component.scss'
+  templateUrl: './modal-general-info.component.html',
+  styleUrl: './modal-general-info.component.scss'
 })
-export class ModalUpdatedPriceInfoComponent {
+export class ModalGeneralInfo {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: {message: string}, 
-    private dialogRef: MatDialogRef<ModalUpdatedPriceInfoComponent>
+    private dialogRef: MatDialogRef<ModalGeneralInfo>
   ) {}
 
   closeModal(): void {
