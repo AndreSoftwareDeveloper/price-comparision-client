@@ -5,22 +5,24 @@
 
 <div id="offers">
     <div *ngIf="data">
-        <p>The best offer: <br>
-          ID: {{ data.products[0].id }} <!-- TODO: should not be exposed -->
-          Shop: {{ data.products[0].shop }},
-          Product: {{ data.products[0].name }},
-          Price: {{ data.products[0].price }}
-          <button type="submit" (click)="openUpdatePriceModal(data.products[0].id)">Update price</button>
-        </p>
+      <h3>The best offer:</h3>
+
+        <div class="product"> <br>
+          {{ data.products[0].price }}zł <br>      
+          {{ data.products[0].name }} <br>
+          {{ data.products[0].shop }} <br>
+          <button type="submit" (click)="openUpdatePriceModal(data.products[0].id)">Update price</button> <br><br>
+        </div>
       
-        <p>Other offers:</p>
+        <br> <h3>Other offers:</h3>
       
-        <p *ngFor="let product of data.products.slice(1)">
-          ID: {{ product.id }}
-          Shop: {{ product.shop }},
-          Product: {{ product.name }},
-          Price: {{ product.price }}
-          <button type="submit" (click)="openUpdatePriceModal(product.id)">Update price</button>
-        </p>
+        <div *ngFor="let product of data.products.slice(1)">
+          <div class="product"> <br>
+            {{ product.price }}zł <br>      
+            {{ product.name }} <br>
+            {{ product.shop }} <br>
+            <button type="submit" (click)="openUpdatePriceModal(product.id)">Update price</button> <br><br>
+          </div> <br>
       </div>
+    </div>
 </div>
