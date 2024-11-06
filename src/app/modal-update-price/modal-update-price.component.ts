@@ -1,7 +1,9 @@
 import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 import { ApiService } from '../api.service';
+import { ModalUpdatedPriceInfoComponent } from '../modal-updated-price-info/modal-updated-price-info.component';
+import { HttpErrorResponse } from '@angular/common/http';
 
 export interface PriceUpdateData {
   id: number;
@@ -17,7 +19,12 @@ export interface PriceUpdateData {
 export class ModalUpdatePriceComponent {
   priceUpdateData: PriceUpdateData
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: { id: number }, private apiService: ApiService) {
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: { id: number }, 
+    private apiService: ApiService,
+    private updatePriceModal: MatDialogRef<ModalUpdatePriceComponent>,
+    private dialog: MatDialog
+  ) {
     this.priceUpdateData = {
       id: this.data.id,
       new_price: 0
@@ -28,11 +35,20 @@ export class ModalUpdatePriceComponent {
     this.apiService.updatePrice(this.priceUpdateData).subscribe(
       {
         next: (next) => {
-          console.log(next) //TODO modal
+          this.handleUpdatedPrice(next)
         },
-        error: (error) => {
-          console.log(error)
+        error: (error: HttpErrorResponse) => {
+          this.handleUpdatedPrice(error)
         }
+      }
+    )
+  }
+
+  handleUpdatedPrice(event: any) {
+    this.updatePriceModal.close()
+    this.updatePriceModal.afterClosed().subscribe(
+      () => {
+        this.dialog.open(ModalUpdatedPriceInfoComponent, { data: event})
       }
     )
   }
