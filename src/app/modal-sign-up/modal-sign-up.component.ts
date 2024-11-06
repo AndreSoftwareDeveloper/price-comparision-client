@@ -27,7 +27,11 @@ export class ModalSignUpComponent {
   passwordRequirementsVisibility: boolean = false;
   errorMessage: string = "";
 
-  constructor(private apiService: ApiService, private dialog: MatDialog, private dialogRef: MatDialogRef<ModalSignUpComponent>) {}
+  constructor(
+    private apiService: ApiService, 
+    private dialog: MatDialog, 
+    private dialogRef: MatDialogRef<ModalSignUpComponent>
+  ) {}
 
   submitForm() {
     this.passwordRequirementsVisibility = false
@@ -46,7 +50,7 @@ export class ModalSignUpComponent {
       return;
     }
 
-    const userData = {
+    const userData: User = {
       username: this.signUpForm.username,
       email: this.signUpForm.email,
       password: this.signUpForm.password
@@ -76,4 +80,10 @@ export class ModalSignUpComponent {
       }
     });
   }
+}
+
+export interface User {
+  username: string,
+  email: string,
+  password: string
 }

@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 
 import { ApiService } from '../api.service';
 import { ModalUpdatePriceComponent } from '../modal-update-price/modal-update-price.component';
-import { ModalGeneralInfo } from '../modal-general-info/modal-general-info.component';
+import { ModalGeneralInfoComponent } from '../modal-general-info/modal-general-info.component';
 
 @Component({
   selector: 'home-root',  
@@ -23,7 +23,7 @@ export class HomeComponent {
         next: (data: DataResponse) => {
           if (data.products.length == 0) {
             const message = `No offers for: ${this.product}`
-            this.dialog.open(ModalGeneralInfo, { data: message})
+            this.dialog.open(ModalGeneralInfoComponent, { data: message})
             return;
           }
           
@@ -63,6 +63,6 @@ interface Product {
   price: string | number;
 }
 
-interface DataResponse {
+export interface DataResponse {
   products: Product[];
 }

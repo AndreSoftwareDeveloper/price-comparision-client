@@ -1,13 +1,17 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 import { ApiService } from '../api.service';
 import { ModalGeneralInfoComponent } from '../modal-general-info/modal-general-info.component';
-import { HttpErrorResponse } from '@angular/common/http';
 
 export interface PriceUpdateData {
   id: number;
   new_price: number;
+}
+
+export interface ApiResponse {
+  message: string;
 }
 
 @Component({
@@ -35,24 +39,23 @@ export class ModalUpdatePriceComponent {
   updatePrice() {
     this.apiService.updatePrice(this.priceUpdateData).subscribe(
       {
-        next: (next) => {
-          this.handleUpdatedPrice(next)
-          this.generalInfoModal.afterClosed().subscribe(
-            () => { location.reload() }
-          )
-        },
+        next: (next: ApiResponse) => {
+          this.updatePriceModal.close();
+          this.updatePriceModal.afterClosed().subscribe(() => {
+              this.generalInfoModal = this.dialog.open(ModalGeneralInfoComponent, { data: next.message });
+              this.generalInfoModal.afterClosed().subscribe(() => { 
+                  location.reload();
+              });
+          });
+      },
         error: (error: HttpErrorResponse) => {
-          this.handleUpdatedPrice(error)
+          this.updatePriceModal.close()
+          this.updatePriceModal.afterClosed().subscribe(
+            () => {
+              this.dialog.open(ModalGeneralInfoComponent, { data: error.message})
+            }
+          )
         }
-      }
-    )
-  }
-
-  handleUpdatedPrice(event: any) {
-    this.updatePriceModal.close()
-    this.updatePriceModal.afterClosed().subscribe(
-      () => {
-        this.dialog.open(ModalGeneralInfoComponent, { data: event.message})
       }
     )
   }

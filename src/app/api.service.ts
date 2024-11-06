@@ -2,7 +2,9 @@ import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { catchError, map, Observable, throwError } from "rxjs";
 
-import { PriceUpdateData } from "./modal-update-price/modal-update-price.component";
+import { ApiResponse, PriceUpdateData } from "./modal-update-price/modal-update-price.component";
+import { DataResponse } from "./home/home.component";
+import { User } from "./modal-sign-up/modal-sign-up.component";
 
 export class LoginResponse {
     access_token: string;
@@ -25,12 +27,12 @@ export class ApiService {
 
     constructor(private http: HttpClient) {}
     
-    searchOffers(nameOrCategory: string): Observable<any> {
+    searchOffers(nameOrCategory: string): Observable<DataResponse> {
       const params = new HttpParams().set('name_or_category', nameOrCategory);
-      return this.http.get<any>(`${this.api_endpoint}`, { params });
+      return this.http.get<DataResponse>(`${this.api_endpoint}`, { params });
     }
 
-    signUp(userData: any) {
+    signUp(userData: User) {
       return this.http.post(this.register_endpoint, userData).pipe(
         map((response) => {
           return response;
@@ -41,7 +43,8 @@ export class ApiService {
       );
     }
 
-    signIn(userData: any) {    
+    signIn(userData: string) { 
+      console.log(userData)   
       const headers = new HttpHeaders({
         'Content-Type': 'application/x-www-form-urlencoded',
       });
@@ -70,7 +73,7 @@ export class ApiService {
     }
 
     updatePrice(updateData: PriceUpdateData) {
-      return this.http.patch(this.api_endpoint, updateData).pipe(
+      return this.http.patch<ApiResponse>(this.api_endpoint, updateData).pipe(
         map((response) => {
           return response
         }),
