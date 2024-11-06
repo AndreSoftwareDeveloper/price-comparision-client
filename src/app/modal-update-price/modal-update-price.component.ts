@@ -2,7 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 import { ApiService } from '../api.service';
-import { ModalGeneralInfo } from '../modal-general-info/modal-general-info.component';
+import { ModalGeneralInfoComponent } from '../modal-general-info/modal-general-info.component';
 import { HttpErrorResponse } from '@angular/common/http';
 
 export interface PriceUpdateData {
@@ -23,6 +23,7 @@ export class ModalUpdatePriceComponent {
     @Inject(MAT_DIALOG_DATA) public data: { id: number }, 
     private apiService: ApiService,
     private updatePriceModal: MatDialogRef<ModalUpdatePriceComponent>,
+    private generalInfoModal: MatDialogRef<ModalGeneralInfoComponent>,
     private dialog: MatDialog
   ) {
     this.priceUpdateData = {
@@ -36,6 +37,9 @@ export class ModalUpdatePriceComponent {
       {
         next: (next) => {
           this.handleUpdatedPrice(next)
+          this.generalInfoModal.afterClosed().subscribe(
+            () => { location.reload() }
+          )
         },
         error: (error: HttpErrorResponse) => {
           this.handleUpdatedPrice(error)
@@ -48,7 +52,7 @@ export class ModalUpdatePriceComponent {
     this.updatePriceModal.close()
     this.updatePriceModal.afterClosed().subscribe(
       () => {
-        this.dialog.open(ModalGeneralInfo, { data: event.message})
+        this.dialog.open(ModalGeneralInfoComponent, { data: event.message})
       }
     )
   }
