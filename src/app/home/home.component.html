@@ -2,27 +2,32 @@
     <textarea id="product" name="product" [(ngModel)]="product" placeholder="Search for product"></textarea><br><br>
     <button type="submit">Submit</button>
 </form>
+<br> <br>
 
-<div id="offers">
-    <div *ngIf="data">
-      <h3>The best offer:</h3>
+<div *ngIf="data" id="offersContainer">
+  <h2 class="offersHeader"> Best offer: </h2>
+  <div class="offers">
 
-        <div class="product"> <br>
-          {{ data.products[0].price }}zł <br>      
-          {{ data.products[0].name }} <br>
-          {{ data.products[0].shop }} <br>
-          <button type="submit" (click)="openUpdatePriceModal(data.products[0].id)">Update price</button> <br><br>
-        </div>
-      
-        <br> <h3>Other offers:</h3>
-      
-        <div *ngFor="let product of data.products.slice(1)">
-          <div class="product"> <br>
-            {{ product.price }}zł <br>      
-            {{ product.name }} <br>
-            {{ product.shop }} <br>
-            <button type="submit" (click)="openUpdatePriceModal(product.id)">Update price</button> <br><br>
-          </div> <br>
-      </div>
+    <div class="product" >
+      <h2> {{ data.products[0].price }}zł </h2> <br>   
+      {{ data.products[0].name }} <br>
+      {{ data.products[0].shop }} <br>
+      <button type="submit" class="updatePriceButton" (click)="openUpdatePriceModal(data.products[0].id)">Update price</button> <br><br>
     </div>
+
+    <hr class="offersHeader" style="margin-top: 3%">
+    <h2 class="offersHeader"> Other offers: </h2>
+
+    <div *ngFor="let product of data.products.slice(1)">
+
+      <div class="product">
+        <h2> {{ product.price }}zł </h2> <br>
+        {{ product.name }} <br>
+        {{ product.shop }} <br>
+        <button type="submit" class="updatePriceButton" (click)="openUpdatePriceModal(product.id)">Update price</button> <br><br>
+      </div>
+
+    </div>
+
+  </div>
 </div>
