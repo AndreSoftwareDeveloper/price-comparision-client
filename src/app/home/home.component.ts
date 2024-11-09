@@ -27,9 +27,10 @@ export class HomeComponent {
             const message = `No offers for: ${this.product}`
             this.dialog.open(ModalGeneralInfoComponent, { data: message})
             return;
-          }
-          
-          else {          
+          }          
+          else {        
+            const productSearchTextarea = document.getElementById("product")!
+            productSearchTextarea.style.marginTop = '0'
             data.products.forEach( (product) => {
               if (typeof product.price === 'string')
                 product.price = parseFloat(product.price.replace(' zł', '').replace(',', '.'));            

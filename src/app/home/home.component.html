@@ -8,7 +8,7 @@
   <h2 class="offersHeader"> Best offer: </h2>
   <div class="offers">
 
-    <div class="product" >
+    <div class="productCard" >
       <h2> {{ data.products[0].price }}zł </h2> <br>   
       {{ data.products[0].name }} <br>
       {{ data.products[0].shop }} <br>
@@ -20,7 +20,7 @@
 
     <div *ngFor="let product of data.products.slice(1)">
 
-      <div class="product">
+      <div class="productCard">
         <h2> {{ product.price }}zł </h2> <br>
         {{ product.name }} <br>
         {{ product.shop }} <br>

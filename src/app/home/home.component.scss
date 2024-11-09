@@ -29,6 +29,7 @@ button {
     color: white;
     cursor: pointer;
     transition: background-color 0.3s;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 button:hover {
@@ -43,7 +44,7 @@ button:hover {
     justify-content: space-evenly;    
 }
 
-.product {
+.productCard {
     font-size: large;
     background-color: white;
     width: 18vw;
@@ -52,6 +53,7 @@ button:hover {
     position: relative;
     display: grid;
     place-items: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .updatePriceButton {
