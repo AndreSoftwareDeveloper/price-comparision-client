@@ -9,7 +9,11 @@
 </head>
 
 <body>
-    <button mat-button (click)="openDialog()" id="sign-in">SIGN IN</button>
+
+    <div id="userPanel">
+        <button mat-button (click)="openDialog()" id="signIn">SIGN IN</button>
+    </div>
+
     <router-outlet></router-outlet>
 </body>
 </html>

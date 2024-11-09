@@ -17,18 +17,35 @@ export class HomeComponent {
   product: string = '';
   data?: DataResponse;
   
-  constructor(private apiService: ApiService, private dialog: MatDialog) {}  
+  constructor(private apiService: ApiService, private dialog: MatDialog) {}
+
+  ngOnInit() {
+    var priceUpdated = sessionStorage.getItem('priceUpdated')
+    var searchedProduct = sessionStorage.getItem('searchedProduct')
+    
+    if (priceUpdated == 'true' && searchedProduct != null && searchedProduct != undefined) {      
+      this.handleSearchOffersResponse(searchedProduct)
+      sessionStorage.setItem('priceUpdated', 'false')
+
+      priceUpdated = "false";
+      searchedProduct = null;
+    }    
+  }
 
   onSubmit() {
-    this.apiService.searchOffers(this.product).subscribe(
+    this.handleSearchOffersResponse(this.product)
+  }
+
+  handleSearchOffersResponse(product: string) {
+    this.apiService.searchOffers(product).subscribe(
       {
         next: (data: DataResponse) => {
           if (data.products.length == 0) {
-            const message = `No offers for: ${this.product}`
+            const message = `No offers for: ${product}`
             this.dialog.open(ModalGeneralInfoComponent, { data: message})
             return;
-          }          
-          else {        
+          }
+          else {
             const productSearchTextarea = document.getElementById("product")!
             productSearchTextarea.style.marginTop = '0'
             data.products.forEach( (product) => {
@@ -52,9 +69,12 @@ export class HomeComponent {
     );
   }
 
-  openUpdatePriceModal(id: number) {
+  openUpdatePriceModal(id: number, searchedProduct: string) {
     this.dialog.open(ModalUpdatePriceComponent, {
-      data: { id: id }
+      data: { 
+        id: id,
+        product: searchedProduct
+      }
     })
   }
 }

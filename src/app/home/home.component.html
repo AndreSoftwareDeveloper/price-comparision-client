@@ -10,9 +10,9 @@
 
     <div class="productCard" >
       <h2> {{ data.products[0].price }}zł </h2> <br>   
-      {{ data.products[0].name }} <br>
-      {{ data.products[0].shop }} <br>
-      <button type="submit" class="updatePriceButton" (click)="openUpdatePriceModal(data.products[0].id)">Update price</button> <br><br>
+      <span class="productData"> {{ data.products[0].name }} </span> <br>
+      <span class="productData"> {{ data.products[0].shop }} </span> <br>
+      <button type="submit" class="updatePriceButton" (click)="openUpdatePriceModal(data.products[0].id, data.products[0].name)">Update price</button> <br><br>
     </div>
 
     <hr class="offersHeader" style="margin-top: 3%">
@@ -22,9 +22,9 @@
 
       <div class="productCard">
         <h2> {{ product.price }}zł </h2> <br>
-        {{ product.name }} <br>
-        {{ product.shop }} <br>
-        <button type="submit" class="updatePriceButton" (click)="openUpdatePriceModal(product.id)">Update price</button> <br><br>
+        <span class="productData"> {{ product.name }} </span> <br>
+        <span class="productData"> {{ product.shop }} </span> <br>
+        <button type="submit" class="updatePriceButton" (click)="openUpdatePriceModal(product.id, product.name)">Update price</button> <br><br>
       </div>
 
     </div>

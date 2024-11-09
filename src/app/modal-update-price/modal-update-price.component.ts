@@ -17,7 +17,7 @@ export class ModalUpdatePriceComponent {
   priceUpdateData: PriceUpdateData
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: { id: number }, 
+    @Inject(MAT_DIALOG_DATA) public data: { id: number, product: string }, 
     private apiService: ApiService,
     private updatePriceModal: MatDialogRef<ModalUpdatePriceComponent>,
     private generalInfoModal: MatDialogRef<ModalGeneralInfoComponent>,
@@ -36,8 +36,10 @@ export class ModalUpdatePriceComponent {
           this.updatePriceModal.close();
           this.updatePriceModal.afterClosed().subscribe(() => {
               this.generalInfoModal = this.dialog.open(ModalGeneralInfoComponent, { data: next.message });
-              this.generalInfoModal.afterClosed().subscribe(() => { 
-                  location.reload();
+              this.generalInfoModal.afterClosed().subscribe(() => {
+                sessionStorage.setItem('searchedProduct', this.data.product) //todo product should be in priceUpdateData
+                sessionStorage.setItem('priceUpdated', 'true')
+                location.reload();
               });
           });
       },
