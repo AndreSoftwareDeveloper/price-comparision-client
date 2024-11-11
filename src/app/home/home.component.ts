@@ -6,6 +6,7 @@ import { ModalUpdatePriceComponent } from '../modal-update-price/modal-update-pr
 import { ModalGeneralInfoComponent } from '../modal-general-info/modal-general-info.component';
 import { DataResponse } from '../models/data-response.model';
 import { Product } from '../models/product.model';
+import { throwError } from 'rxjs';
 
 @Component({
   selector: 'home-root',  
@@ -38,16 +39,25 @@ export class HomeComponent {
 
   handleSearchOffersResponse(product: string) {
     this.apiService.searchOffers(product).subscribe(
-      {
+      {        
         next: (data: DataResponse) => {
+          if (!product) {
+            const message = "Please enter the product you are looking for."
+            this.dialog.open(ModalGeneralInfoComponent, {data: message})
+            return
+          }
+          
           if (data.products.length == 0) {
             const message = `No offers for: ${product}`
-            this.dialog.open(ModalGeneralInfoComponent, { data: message})
+            this.dialog.open(ModalGeneralInfoComponent, {data: message})
             return;
           }
           else {
+            
+            console.log(data.products)
             const productSearchTextarea = document.getElementById("product")!
             productSearchTextarea.style.marginTop = '0'
+
             data.products.forEach( (product) => {
               if (typeof product.price === 'string')
                 product.price = parseFloat(product.price.replace(' zł', '').replace(',', '.'));            
@@ -62,8 +72,7 @@ export class HomeComponent {
         },
 
         error: (error) => {
-          const message = `An error occurred: ${error.message}`
-          this.dialog.open(ModalGeneralInfoComponent, { data: message })
+          this.dialog.open(ModalGeneralInfoComponent, { data: error.message })
         }
       }
     );
