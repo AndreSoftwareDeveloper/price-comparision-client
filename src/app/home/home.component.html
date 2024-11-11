@@ -9,22 +9,22 @@
   <div class="offers">
 
     <div class="productCard" >
-      <h2> {{ data.products[0].price }}zł </h2> <br>   
+      <h2> {{ data.products[0].price }}zł </h2> <br>
       <span class="productData"> {{ data.products[0].name }} </span> <br>
       <span class="productData"> {{ data.products[0].shop }} </span> <br>
-      <button type="submit" class="updatePriceButton" (click)="openUpdatePriceModal(data.products[0].id, data.products[0].name)">Update price</button> <br><br>
+      <button type="submit" class="updatePriceButton" (click)="openUpdatePriceModal(data.products[0].id, this.product)">Update price</button> <br><br>
     </div>
 
     <hr class="offersHeader" style="margin-top: 3%">
     <h2 class="offersHeader"> Other offers: </h2>
 
-    <div *ngFor="let product of data.products.slice(1)">
+    <div *ngFor="let offer of data.products.slice(1)">
 
       <div class="productCard">
-        <h2> {{ product.price }}zł </h2> <br>
-        <span class="productData"> {{ product.name }} </span> <br>
-        <span class="productData"> {{ product.shop }} </span> <br>
-        <button type="submit" class="updatePriceButton" (click)="openUpdatePriceModal(product.id, product.name)">Update price</button> <br><br>
+        <h2> {{ offer.price }}zł </h2> <br>
+        <span class="productData"> {{ offer.name }} </span> <br>
+        <span class="productData"> {{ offer.shop }} </span> <br>
+        <button type="submit" class="updatePriceButton" (click)="openUpdatePriceModal(offer.id, this.product)">Update price</button> <br><br>
       </div>
 
     </div>

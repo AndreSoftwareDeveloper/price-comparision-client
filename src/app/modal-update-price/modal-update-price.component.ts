@@ -30,6 +30,7 @@ export class ModalUpdatePriceComponent {
   }
 
   updatePrice() {
+    console.log(this.data.product)
     this.apiService.updatePrice(this.priceUpdateData).subscribe(
       {
         next: (next: ApiResponse) => {

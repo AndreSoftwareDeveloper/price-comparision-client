@@ -6,7 +6,6 @@ import { ModalUpdatePriceComponent } from '../modal-update-price/modal-update-pr
 import { ModalGeneralInfoComponent } from '../modal-general-info/modal-general-info.component';
 import { DataResponse } from '../models/data-response.model';
 import { Product } from '../models/product.model';
-import { throwError } from 'rxjs';
 
 @Component({
   selector: 'home-root',  
@@ -27,9 +26,6 @@ export class HomeComponent {
     if (priceUpdated == 'true' && searchedProduct != null && searchedProduct != undefined) {      
       this.handleSearchOffersResponse(searchedProduct)
       sessionStorage.setItem('priceUpdated', 'false')
-
-      priceUpdated = "false";
-      searchedProduct = null;
     }    
   }
 
@@ -53,8 +49,6 @@ export class HomeComponent {
             return;
           }
           else {
-            
-            console.log(data.products)
             const productSearchTextarea = document.getElementById("product")!
             productSearchTextarea.style.marginTop = '0'
 
