@@ -9,7 +9,7 @@
   <div class="offers">
 
     <div class="productCard" >
-      <h2> {{ data.products[0].price }}zł </h2> <br>
+      <h2> {{ data.products[0].price | number:'1.2-2' }}zł</h2> <br>
       <span class="productData"> {{ data.products[0].name }} </span> <br>
       <span class="productData"> {{ data.products[0].shop }} </span> <br>
       <button type="submit" class="updatePriceButton" (click)="openUpdatePriceModal(data.products[0].id, this.product)">Update price</button> <br><br>
@@ -21,13 +21,12 @@
     <div *ngFor="let offer of data.products.slice(1)">
 
       <div class="productCard">
-        <h2> {{ offer.price }}zł </h2> <br>
+        <h2> {{ offer.price | number:'1.2-2' }}zł </h2> <br>
         <span class="productData"> {{ offer.name }} </span> <br>
         <span class="productData"> {{ offer.shop }} </span> <br>
         <button type="submit" class="updatePriceButton" (click)="openUpdatePriceModal(offer.id, this.product)">Update price</button> <br><br>
       </div>
 
     </div>
-
   </div>
 </div>

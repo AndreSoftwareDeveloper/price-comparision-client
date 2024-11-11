@@ -30,7 +30,6 @@ export class ModalUpdatePriceComponent {
   }
 
   updatePrice() {
-    console.log(this.data.product)
     this.apiService.updatePrice(this.priceUpdateData).subscribe(
       {
         next: (next: ApiResponse) => {
@@ -38,7 +37,7 @@ export class ModalUpdatePriceComponent {
           this.updatePriceModal.afterClosed().subscribe(() => {
               this.generalInfoModal = this.dialog.open(ModalGeneralInfoComponent, { data: next.message });
               this.generalInfoModal.afterClosed().subscribe(() => {
-                sessionStorage.setItem('searchedProduct', this.data.product) //todo product should be in priceUpdateData
+                sessionStorage.setItem('searchedProduct', this.data.product) //TODO product should be in priceUpdateData
                 sessionStorage.setItem('priceUpdated', 'true')
                 location.reload();
               });
