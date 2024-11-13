@@ -6,6 +6,7 @@ import { ModalUpdatePriceComponent } from '../modal-update-price/modal-update-pr
 import { ModalGeneralInfoComponent } from '../modal-general-info/modal-general-info.component';
 import { DataResponse } from '../models/data-response.model';
 import { Product } from '../models/product.model';
+import { ModalSignInComponent } from '../modal-sign-in/modal-sign-in.component';
 
 @Component({
   selector: 'home-root',  
@@ -31,6 +32,10 @@ export class HomeComponent {
 
   onSubmit() {
     this.handleSearchOffersResponse(this.product)
+  }
+
+  openDialog() {
+    this.dialog.open(ModalSignInComponent);
   }
 
   handleSearchOffersResponse(product: string) {

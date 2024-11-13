@@ -1,8 +1,16 @@
+<div id="userPanel">
+  <button mat-button (click)="openDialog()" id="signIn">SIGN IN</button>
+</div>
+
 <form (ngSubmit)="onSubmit()">
     <textarea id="product" name="product" [(ngModel)]="product" placeholder="Search for product"></textarea><br><br>
     <button type="submit">Submit</button>
 </form>
 <br> <br>
+
+<div>
+  <button type="button" id="addOffer">Add an Offer</button>
+</div>
 
 <div *ngIf="data" id="offersContainer">
   <h2 class="offersHeader"> Best offer: </h2>
