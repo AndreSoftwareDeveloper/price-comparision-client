@@ -7,6 +7,7 @@ import { ModalGeneralInfoComponent } from '../modal-general-info/modal-general-i
 import { DataResponse } from '../models/data-response.model';
 import { Product } from '../models/product.model';
 import { ModalSignInComponent } from '../modal-sign-in/modal-sign-in.component';
+import { ModalAddOfferComponent } from '../modal-add-offer/modal-add-offer.component';
 
 @Component({
   selector: 'home-root',  
@@ -84,5 +85,9 @@ export class HomeComponent {
         product: searchedProduct
       }
     })
+  }
+
+  openAddOfferModal() {
+    this.dialog.open(ModalAddOfferComponent)
   }
 }
