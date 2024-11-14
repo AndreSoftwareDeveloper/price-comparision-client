@@ -42,7 +42,7 @@ export class ModalUpdatePriceComponent {
                 location.reload();
               });
           });
-      },
+        },
         error: (error: HttpErrorResponse) => {
           this.updatePriceModal.close()
           this.updatePriceModal.afterClosed().subscribe(

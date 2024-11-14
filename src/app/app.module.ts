@@ -13,6 +13,7 @@ import { HomeComponent } from './home/home.component';
 import { ModalSignInComponent } from './modal-sign-in/modal-sign-in.component';
 import { ModalSignUpComponent } from './modal-sign-up/modal-sign-up.component';
 import { ModalUpdatePriceComponent } from './modal-update-price/modal-update-price.component';
+import { ModalAddOfferComponent } from './modal-add-offer/modal-add-offer.component';
 
 @NgModule({ 
   declarations: [
@@ -21,7 +22,8 @@ import { ModalUpdatePriceComponent } from './modal-update-price/modal-update-pri
     HomeComponent,
     ModalSignInComponent,
     ModalSignUpComponent,
-    ModalUpdatePriceComponent
+    ModalUpdatePriceComponent,
+    ModalAddOfferComponent
   ],
   imports: [
     AppRoutingModule,
