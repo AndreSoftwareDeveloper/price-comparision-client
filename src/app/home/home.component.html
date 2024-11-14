@@ -1,8 +1,12 @@
-<div id="userPanel">
-  <button mat-button (click)="openDialog()" id="signIn">SIGN IN</button>
+<div id="topBar">
+  <button (click)="openAddOfferModal()" type="button" id="addOffer">Add an Offer</button>
+
+  <div id="userPanel">
+    <button mat-button (click)="openDialog()" id="signIn">SIGN IN</button>
+  </div>
 </div>
 
-<button (click)="openAddOfferModal()" type="button" id="addOffer">Add an Offer</button>
+
 
 <form (ngSubmit)="onSubmit()">
     <textarea id="product" name="product" [(ngModel)]="product" placeholder="Search for product"></textarea><br><br>

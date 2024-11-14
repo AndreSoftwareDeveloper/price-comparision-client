@@ -32,20 +32,36 @@ button:hover {
     background-color: #0056b3;
 }
 
+#topBar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 15%;
+}
+
 #userPanel {
+    position: absolute;
     top: 0;
     right: 0;
-    width: 20vw;
-    height: 20vh;    
+    width: 20%;
+    height: 100%;    
     background-color: white;
-    position: fixed;
+    border-bottom-left-radius: 15%;
+}
+
+
+#addOffer {
+    position: inherit;
+    top: 5%;
+    left: 5%;
 }
 
 #signIn {
+    position: inherit;
+    width: 50%;
+    margin-right: 0;
     transition: background-color 0.3s;
-    margin-top: 5%;
-    right: 0;
-    position: absolute;
     border-radius: 20px 0 0 20px;
 }
 
