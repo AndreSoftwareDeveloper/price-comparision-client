@@ -43,30 +43,32 @@ export class HomeComponent {
     this.apiService.searchOffers(product).subscribe(
       {        
         next: (data: DataResponse) => {
-          if (!product) {
-            const message = "Please enter the product you are looking for."
+
+          if (!product || data.products.length == 0) {
+            var message = "Please enter the product you are looking for."
+            
+            if (data.products.length == 0)
+              message = `No offers for: ${product}`
+
             this.dialog.open(ModalGeneralInfoComponent, {data: message})
             return
-          }
-          
-          if (data.products.length == 0) {
-            const message = `No offers for: ${product}`
-            this.dialog.open(ModalGeneralInfoComponent, {data: message})
-            return;
           }
           else {
             const productSearchTextarea = document.getElementById("product")!
             productSearchTextarea.style.marginTop = '0'
 
-            data.products.forEach( (product) => {
+            data.products.forEach( (product) => {              
               if (typeof product.price === 'string')
-                product.price = parseFloat(product.price.replace(' zł', '').replace(',', '.'));            
-              }
+                product.price = parseFloat(product.price.replace(' zł', '').replace(',', '.'));
+
+              product.image = `data:image/jpg;base64,${product.image}`;
+            }
             )
+
             data.products.sort((a: Product, b: Product) => {
               return (a.price as number) - (b.price as number);
             });
-
+              
             this.data = data;
           }
         },

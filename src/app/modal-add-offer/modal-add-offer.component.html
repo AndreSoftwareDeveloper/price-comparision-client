@@ -1,7 +1,7 @@
 <div class="modal-container">
     <h2>Add an Offer</h2>
     
-    <form>
+    <form enctype="multipart/form-data">
       <div class="form-group">
         <label for="shop">Shop</label>
         <input type="text" [(ngModel)]="offer.shop" id="shop" name="shop" required>
@@ -14,7 +14,7 @@
 
         <label for="imageLabel">Image</label>
         <label for="image" name="imageLabel" id="imageLabel" (click)="pickFile()">pick a product's image</label>
-        <input type="file" [(ngModel)]="offer.image" id="image" name="image">
+        <input type="file" (change)="onFileSelected($event)" id="image" name="image">
       </div>
   
       <br>

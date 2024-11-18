@@ -34,14 +34,16 @@ export class ModalUpdatePriceComponent {
       {
         next: (next: ApiResponse) => {
           this.updatePriceModal.close();
-          this.updatePriceModal.afterClosed().subscribe(() => {
+          this.updatePriceModal.afterClosed().subscribe(
+            () => {
               this.generalInfoModal = this.dialog.open(ModalGeneralInfoComponent, { data: next.message });
               this.generalInfoModal.afterClosed().subscribe(() => {
                 sessionStorage.setItem('searchedProduct', this.data.product) //TODO product should be in priceUpdateData
                 sessionStorage.setItem('priceUpdated', 'true')
                 location.reload();
               });
-          });
+            }
+          );
         },
         error: (error: HttpErrorResponse) => {
           this.updatePriceModal.close()

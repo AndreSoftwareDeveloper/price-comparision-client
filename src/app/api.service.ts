@@ -7,7 +7,7 @@ import { User } from "./models/user.model";
 import { ApiResponse } from "./models/api-response.model";
 import { PriceUpdateData } from "./models/price-update-data.model";
 import { LoginResponse } from "./models/login-response.model";
-import { IOffer } from "./modal-add-offer/modal-add-offer.component";
+import { Dupa } from "./modal-add-offer/modal-add-offer.component";
 
 @Injectable({
     providedIn: 'root',
@@ -17,7 +17,7 @@ export class ApiService {
     private register_endpoint = 'http://127.0.0.1:8000/register';
     private login_endpoint = 'http://127.0.0.1:8000/login';
     private account_verification_endpoint = 'http://127.0.0.1:8000/verify_account'
-    private add_offer_endpoint = 'http://127.0.0.1:8000/add_offer';
+    private add_offer_endpoint = 'http://127.0.0.1:8001/add_offer';
 
     constructor(private http: HttpClient) {}
     
@@ -83,20 +83,32 @@ export class ApiService {
       );
     }
 
-    addOffer(offer: IOffer) {
-      return this.http.post<any>(this.add_offer_endpoint, offer).pipe(
+    addOffer(offer: Dupa) {
+      const formData = new FormData();
+      formData.append('shop', offer.shop);
+      formData.append('price', offer.price.toString());
+      formData.append('name', offer.name);
+
+      if (offer.image)
+        formData.append('image', offer.image);      
+    
+      return this.http.post(this.add_offer_endpoint, formData).pipe(
         map(
           (response) => {
-            return response
+            return response;
           }
         ),
         catchError(
           (error) => {
+            console.log(error);
             return throwError(
               () => new Error(error.message)
-            )
+            );
           }
         )
-      )
+      );
     }
+
+
+    
 }

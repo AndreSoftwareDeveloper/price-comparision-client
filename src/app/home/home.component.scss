@@ -48,6 +48,7 @@ button:hover {
     height: 100%;    
     background-color: white;
     border-bottom-left-radius: 15%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 
@@ -87,6 +88,11 @@ button:hover {
     display: grid;
     place-items: center;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.productCard img {
+    width: 100%;
+    height: auto;
 }
 
 .updatePriceButton {
