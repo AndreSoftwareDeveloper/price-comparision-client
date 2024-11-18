@@ -14,10 +14,10 @@ import { Dupa } from "./modal-add-offer/modal-add-offer.component";
 })
 export class ApiService {
     private api_endpoint = 'http://127.0.0.1:8000';
-    private register_endpoint = 'http://127.0.0.1:8000/register';
-    private login_endpoint = 'http://127.0.0.1:8000/login';
+    private register_endpoint = 'http://127.0.0.1:8002/register';
+    private login_endpoint = 'http://127.0.0.1:8002/login';
     private account_verification_endpoint = 'http://127.0.0.1:8000/verify_account'
-    private add_offer_endpoint = 'http://127.0.0.1:8001/add_offer';
+    private add_offer_endpoint = 'http://127.0.0.1:8000/add_offer';
 
     constructor(private http: HttpClient) {}
     
@@ -37,8 +37,7 @@ export class ApiService {
       );
     }
 
-    signIn(userData: string) { 
-      console.log(userData)   
+    signIn(userData: string) {
       const headers = new HttpHeaders({
         'Content-Type': 'application/x-www-form-urlencoded',
       });

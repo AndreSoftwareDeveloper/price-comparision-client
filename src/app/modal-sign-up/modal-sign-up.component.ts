@@ -58,7 +58,7 @@ export class ModalSignUpComponent {
           {
             next: () => this.dialog.open(ModalSignedUpInfoComponent, {
               width: '35%',
-              height: '38%'
+              height: 'auto'
             })
           }
         );
