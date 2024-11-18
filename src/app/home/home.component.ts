@@ -18,6 +18,7 @@ export class HomeComponent {
   title: string = 'price-comparision-client';
   product: string = '';
   data?: DataResponse;
+  static logged: boolean = false
   
   constructor(private apiService: ApiService, private dialog: MatDialog) {}
 
@@ -35,8 +36,12 @@ export class HomeComponent {
     this.handleSearchOffersResponse(this.product)
   }
 
-  openDialog() {
+  openSignInModal() {
     this.dialog.open(ModalSignInComponent);
+  }
+
+  get isLogged() {
+    return HomeComponent.logged;
   }
 
   handleSearchOffersResponse(product: string) {

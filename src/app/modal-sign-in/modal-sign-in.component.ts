@@ -4,6 +4,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ModalSignUpComponent } from '../modal-sign-up/modal-sign-up.component';
 import { ApiService } from '../api.service';
 import { SignInForm } from '../models/sign-in-form.model';
+import { HomeComponent } from '../home/home.component';
 
 @Component({
   selector: 'app-modal-sign-in',
@@ -38,9 +39,9 @@ export class ModalSignInComponent {
   
     return this.apiService.signIn(loginData.toString()).subscribe(
       {
-        next: (next) => {
-          console.log(next)
-          alert("Signed in"); // TODO: Redirect to page for logged in users
+        next: () => {
+          HomeComponent.logged = true
+          this.signInRef.close();
         },
         error: () => {
           this.signInErrorVisibility = true
