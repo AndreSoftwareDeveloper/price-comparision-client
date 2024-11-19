@@ -82,22 +82,24 @@ button:hover {
     font-size: large;
     background-color: white;
     width: 18vw;
-    height: 37vh;
+    height: 45vh;
     border-radius: 5%;
     position: relative;
-    display: grid;
-    place-items: center;
+    display: block;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .productCard img {
-    width: 100%;
-    height: auto;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);    
+    max-width: 85%;
+    max-height: 40%;
 }
 
 .updatePriceButton {
     bottom: 5%;
-    position: absolute;
 }
 
 .offersHeader {
@@ -108,6 +110,5 @@ button:hover {
 }
 
 .productData {
-    position: relative;
     width: 80%;
 }

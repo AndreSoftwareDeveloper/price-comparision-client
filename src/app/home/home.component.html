@@ -17,26 +17,26 @@
   <h2 class="offersHeader"> Best offer: </h2>
   <div class="offers">
 
-    <div class="productCard" >
-      <h2> {{ data.products[0].price | number:'1.2-2' }}zł</h2> <br>
-      <span class="productData"> {{ data.products[0].name }} </span> <br>
-      <span class="productData"> {{ data.products[0].shop }} </span> <br>
-      <img *ngIf="data.products[0].image" [src] ="data.products[0].image">
-      <button type="submit" class="updatePriceButton" *ngIf="isLogged" (click)="openUpdatePriceModal(data.products[0].id, this.product)">Update price</button> <br><br>
+    <div class="productCard" >      
+      <h2> {{ data.products[0].price | number:'1.2-2' }}zł </h2>
+      {{ data.products[0].name }} <br>
+      {{ data.products[0].shop }} <br>      
+      <img *ngIf="data.products[0].image" [src] ="data.products[0].image"> <br>
+      <button type="submit" class="updatePriceButton" *ngIf="isLogged" (click)="openUpdatePriceModal(data.products[0].id, this.product)">Update price</button>
     </div>
 
     <hr class="offersHeader" style="margin-top: 3%">
     <h2 class="offersHeader"> Other offers: </h2>
 
     <div *ngFor="let offer of data.products.slice(1)">
-      <div class="productCard">
-        <h2> {{ offer.price | number:'1.2-2' }}zł </h2> <br>
-        <span class="productData"> {{ offer.name }} </span> <br>
-        <span class="productData"> {{ offer.shop }} </span> <br>
-        <img *ngIf="offer.image" [src] ="offer.image">
-        <button type="submit" class="updatePriceButton" *ngIf="isLogged" (click)="openUpdatePriceModal(offer.id, this.product)">Update price</button> <br><br>
+      <div class="productCard" >      
+        <h2> {{ offer.price | number:'1.2-2' }}zł </h2>
+        {{ offer.name }} <br>
+        {{ offer.shop }} <br>      
+        <img *ngIf="offer.image" [src] ="offer.image"> <br>
+        <button type="submit" class="updatePriceButton" *ngIf="isLogged" (click)="openUpdatePriceModal(offer.id, this.product)">Update price</button>
       </div>
-    </div>    
+    </div>
 
   </div>
 </div>
