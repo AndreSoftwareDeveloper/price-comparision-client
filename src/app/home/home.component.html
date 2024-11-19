@@ -2,7 +2,8 @@
   <button *ngIf="isLogged" (click)="openAddOfferModal()" type="button" id="addOffer">Add an Offer</button>
 
   <div id="userPanel">
-    <button mat-button (click)="openSignInModal()" id="signIn">SIGN IN</button>
+    <button mat-button *ngIf="!isLogged" (click)="openSignInModal()" id="signIn">SIGN IN</button>
+    <button mat-button *ngIf="isLogged" (click)="logOut()" id="signIn">LOG OUT</button>
   </div>
 </div>
 

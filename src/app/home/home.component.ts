@@ -40,6 +40,10 @@ export class HomeComponent {
     this.dialog.open(ModalSignInComponent);
   }
 
+  logOut() {
+    HomeComponent.logged = false;
+  }
+
   get isLogged() {
     return HomeComponent.logged;
   }
