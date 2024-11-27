@@ -25,19 +25,32 @@
       {{ data.products[0].name }} <br>
       {{ data.products[0].shop }} <br>      
       <img *ngIf="data.products[0].image" [src] ="data.products[0].image"> <br>
-      <button type="submit" class="updatePriceButton" *ngIf="isLogged" (click)="openUpdatePriceModal(data.products[0].id, this.product)">Update price</button>
+
+      <button type="submit" 
+              class="updatePriceButton" 
+              *ngIf="isLogged" 
+              (click)="openUpdatePriceModal(data.products[0].id, this.product)">
+              Update price
+      </button>
+
     </div>
 
     <hr class="offersHeader" style="margin-top: 3%">
     <h2 class="offersHeader"> Other offers: </h2>
 
     <div *ngFor="let offer of data.products.slice(1)">
+      
       <div class="productCard" >      
         <h2> {{ offer.price | number:'1.2-2' }}zł </h2>
         {{ offer.name }} <br>
         {{ offer.shop }} <br>      
         <img *ngIf="offer.image" [src] ="offer.image"> <br>
-        <button type="submit" class="updatePriceButton" *ngIf="isLogged" (click)="openUpdatePriceModal(offer.id, this.product)">Update price</button>
+        <button type="submit" 
+                class="updatePriceButton" 
+                *ngIf="isLogged" 
+                (click)="openUpdatePriceModal(offer.id, this.product)">
+                Update price
+        </button>
       </div>
     </div>
 
