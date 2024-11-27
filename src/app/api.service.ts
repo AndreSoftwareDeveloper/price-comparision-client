@@ -23,7 +23,9 @@ export class ApiService {
     
     searchOffers(name: string): Observable<DataResponse> {
       const params = new HttpParams().set('name', name);
-      return this.http.get<DataResponse>(`${this.api_endpoint}`, { params });
+      return this.http.get<DataResponse>(
+        `${this.api_endpoint}`, { params }
+      );
     }
 
     signUp(userData: User) {
@@ -42,7 +44,9 @@ export class ApiService {
         'Content-Type': 'application/x-www-form-urlencoded',
       });
 
-      return this.http.post<LoginResponse>(this.login_endpoint, userData, { headers }).pipe(
+      return this.http.post<LoginResponse>(
+        this.login_endpoint, userData, { headers }
+      ).pipe(
         map((response) => {
           return response;
         }),
@@ -55,7 +59,9 @@ export class ApiService {
 
     checkVerificationToken(token: string) {
       const params = new HttpParams().set('verification_token', token);
-      return this.http.post(this.account_verification_endpoint, {}, { params }).pipe(
+      return this.http.post(
+        this.account_verification_endpoint, {}, { params }
+      ).pipe(
         map((response) => {
           return response
         }),

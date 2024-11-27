@@ -28,7 +28,8 @@ export class ModalSignUpComponent {
     private dialogRef: MatDialogRef<ModalSignUpComponent>
   ) {}
 
-  submitForm() {
+  submitForm() 
+  {
     this.passwordRequirementsVisibility = false
 
     if (!this.signUpForm.username ||
@@ -36,12 +37,15 @@ export class ModalSignUpComponent {
         !this.signUpForm.password ||
         !this.signUpForm.repeatPassword
     ) {
-      alert("Fill all required fields.")
+      this.passwordRequirementsVisibility = true
+      this.errorMessage = "Fill all required fields."
       return;
     }
 
-    if (this.signUpForm.password !== this.signUpForm.repeatPassword) {
-      alert("Passwords must be the same.")
+    if (this.signUpForm.password !== this.signUpForm.repeatPassword) 
+    {
+      this.passwordRequirementsVisibility = true
+      this.errorMessage = "Passwords must be the same."
       return;
     }
 
@@ -56,17 +60,21 @@ export class ModalSignUpComponent {
         this.dialogRef.close();
         this.dialogRef.afterClosed().subscribe(
           {
-            next: () => this.dialog.open(ModalSignedUpInfoComponent, {
-              width: '35%',
-              height: 'auto'
-            })
+            next: () => this.dialog.open(
+              ModalSignedUpInfoComponent, 
+              {
+                width: '35%',
+                height: 'auto'
+              }
+            )
           }
         );
       },
       error: ( {error, status} ) => {
         this.passwordRequirementsVisibility = true
 
-        if (status === 422) { //password doesn't meat complexity requirements or email is not valid          
+        if (status === 422)  //password doesn't meat complexity requirements or email is not valid
+        {
           const [{ msg }] = error.detail
           this.errorMessage = msg
         }

@@ -14,7 +14,8 @@ import { ModalAddOfferComponent } from '../modal-add-offer/modal-add-offer.compo
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
-export class HomeComponent {
+export class HomeComponent 
+{
   title: string = 'price-comparision-client';
   product: string = '';
   data?: DataResponse;
@@ -22,11 +23,13 @@ export class HomeComponent {
   
   constructor(private apiService: ApiService, private dialog: MatDialog) {}
 
-  ngOnInit() {
+  ngOnInit() 
+  {
     var priceUpdated = sessionStorage.getItem('priceUpdated')
     var searchedProduct = sessionStorage.getItem('searchedProduct')
     
-    if (priceUpdated == 'true' && searchedProduct != null && searchedProduct != undefined) {      
+    if (priceUpdated == 'true' && searchedProduct != null && searchedProduct != undefined) 
+    {      
       this.handleSearchOffersResponse(searchedProduct)
       sessionStorage.setItem('priceUpdated', 'false')
     }    
@@ -69,10 +72,8 @@ export class HomeComponent {
             data.products.forEach( (product) => {              
               if (typeof product.price === 'string')
                 product.price = parseFloat(product.price.replace(' zł', '').replace(',', '.'));
-
               product.image = `data:image/jpg;base64,${product.image}`;
-            }
-            )
+            })
 
             data.products.sort((a: Product, b: Product) => {
               return (a.price as number) - (b.price as number);
@@ -90,12 +91,15 @@ export class HomeComponent {
   }
 
   openUpdatePriceModal(id: number, searchedProduct: string) {
-    this.dialog.open(ModalUpdatePriceComponent, {
-      data: { 
-        id: id,
-        product: searchedProduct
+    this.dialog.open(
+      ModalUpdatePriceComponent, 
+      {
+        data: { 
+          id: id,
+          product: searchedProduct
       }
-    })
+      }
+    )
   }
 
   openAddOfferModal() {

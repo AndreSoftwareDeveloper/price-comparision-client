@@ -19,7 +19,8 @@ export interface Dupa {
   templateUrl: './modal-add-offer.component.html',
   styleUrl: './modal-add-offer.component.scss'
 })
-export class ModalAddOfferComponent {
+export class ModalAddOfferComponent 
+{
    offer: Offer
 
   constructor(
@@ -39,13 +40,15 @@ export class ModalAddOfferComponent {
     document.getElementById("image")?.click()
   }
 
-  onFileSelected(event: Event): void {
+  onFileSelected(event: Event): void 
+  {
     const fileInput = event.target as HTMLInputElement;
     if (fileInput && fileInput.files && fileInput.files.length > 0)
       this.offer.image = fileInput.files[0];    
   }  
 
-  submitForm() {    
+  submitForm() 
+  {    
     const formData: Dupa = {
       shop: this.offer.shop,
       price: this.offer.price,
