@@ -2,13 +2,15 @@
   <button *ngIf="isLogged" (click)="openAddOfferModal()" type="button" id="addOffer">Add an Offer</button>
 
   <div id="userPanel">
-    <button mat-button *ngIf="!isLogged" (click)="openSignInModal()" id="signIn">SIGN IN</button>
-    <button mat-button *ngIf="isLogged" (click)="logOut()" id="signIn">LOG OUT</button>
+    <button mat-button *ngIf="!isLogged" (click)="openSignInModal()" id="signInOut">SIGN IN</button>
+    
+    <button mat-button *ngIf="isLogged" (click)="logOut()" id="signInOut">LOG OUT</button> <br> <br>
+    <span> <h2 *ngIf="isLogged"> QQQQ </h2> </span>
   </div>
 </div>
 
 <form (ngSubmit)="onSubmit()">
-    <textarea id="product" name="product" [(ngModel)]="product" placeholder="Search for product"></textarea><br><br>
+    <textarea id="product" name="product" [(ngModel)]="product" placeholder="Search for product"></textarea> <br> <br>
     <button type="submit">submit</button>
 </form>
 <br> <br>

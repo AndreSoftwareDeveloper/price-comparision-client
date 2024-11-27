@@ -47,7 +47,7 @@ button:hover {
     width: 20%;
     height: 100%;    
     background-color: white;
-    border-bottom-left-radius: 15%;
+    border-bottom-left-radius: 30px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
@@ -58,15 +58,15 @@ button:hover {
     left: 5%;
 }
 
-#signIn {
+#signInOut {
     position: inherit;
     width: 50%;
     margin-right: 0;
     transition: background-color 0.3s;
-    border-radius: 20px 0 0 20px;
+    border-radius: 0 0 0 30px;
 }
 
-#signIn:hover {
+#signInOut:hover {
     background-color: #0056b3;
 }
 
@@ -111,4 +111,9 @@ button:hover {
 
 .productData {
     width: 80%;
+}
+
+h2 {
+    text-align: right;
+    margin-right: 5%;
 }
