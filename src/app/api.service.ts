@@ -21,25 +21,29 @@ export class ApiService {
 
     constructor(private http: HttpClient) {}
     
-    searchOffers(name: string): Observable<DataResponse> {
+    searchOffers(name: string): Observable<DataResponse>
+    {
       const params = new HttpParams().set('name', name);
       return this.http.get<DataResponse>(
-        `${this.api_endpoint}`, { params }
+        `${this.api_endpoint}`, 
+        { params }
       );
     }
 
-    signUp(userData: User) {
+    signUp(userData: User)
+    {
       return this.http.post(this.register_endpoint, userData).pipe(
-        map((response) => {
-          return response;
-        }),
+        map(
+          (response) => response
+        ),
         catchError((httpError) => {
           return throwError(() => httpError);
         })
       );
     }
 
-    signIn(userData: string) {
+    signIn(userData: string)
+    {
       const headers = new HttpHeaders({
         'Content-Type': 'application/x-www-form-urlencoded',
       });
@@ -47,36 +51,36 @@ export class ApiService {
       return this.http.post<LoginResponse>(
         this.login_endpoint, userData, { headers }
       ).pipe(
-        map((response) => {
-          return response;
-        }),
-        catchError(() => {
-          const errorMessage = 'Incorrect email or password.';
-          return throwError(() => new Error(errorMessage));
-        })
+          map(
+            (response) => response
+          ),
+          catchError(() => {
+            const errorMessage = 'Incorrect email or password.';
+            return throwError(() => new Error(errorMessage));
+          })
       );
     }
 
-    checkVerificationToken(token: string) {
+    checkVerificationToken(token: string)
+    {
       const params = new HttpParams().set('verification_token', token);
       return this.http.post(
         this.account_verification_endpoint, {}, { params }
       ).pipe(
-        map((response) => {
-          return response
-        }),
-        catchError((error) => {
-          return throwError(() => new Error(error.message));
-        })
+          map(
+            (response) => response
+          ),
+          catchError((error) => {
+            return throwError(() => new Error(error.message));
+          })
       );
     }
 
-    updatePrice(updateData: PriceUpdateData) {
+    updatePrice(updateData: PriceUpdateData)
+    {
       return this.http.patch<ApiResponse>(this.api_endpoint, updateData).pipe(
         map(
-          (response) => {
-            return response
-          }
+          (response) => response          
         ),
         catchError(
           (error) => {
@@ -88,7 +92,8 @@ export class ApiService {
       );
     }
 
-    addOffer(offer: Dupa) {
+    addOffer(offer: Dupa)
+    {
       const formData = new FormData();
       formData.append('shop', offer.shop);
       formData.append('price', offer.price.toString());
@@ -99,9 +104,7 @@ export class ApiService {
     
       return this.http.post(this.add_offer_endpoint, formData).pipe(
         map(
-          (response) => {
-            return response;
-          }
+          (response) => response     
         ),
         catchError(
           (error) => {
