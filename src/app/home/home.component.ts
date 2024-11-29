@@ -14,8 +14,7 @@ import { ModalAddOfferComponent } from '../modal-add-offer/modal-add-offer.compo
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
-export class HomeComponent 
-{
+export class HomeComponent {
   title: string = 'price-comparision-client';
   product: string = '';
   data?: DataResponse;
@@ -23,16 +22,18 @@ export class HomeComponent
   
   constructor(private apiService: ApiService, private dialog: MatDialog) {}
 
-  ngOnInit() 
-  {
-    var priceUpdated = sessionStorage.getItem('priceUpdated')
-    var searchedProduct = sessionStorage.getItem('searchedProduct')
+  priceUpdated: string | null = ""
+  searchedProduct: string | null = ""
+
+  ngOnInit() {
+    this.priceUpdated = sessionStorage.getItem('priceUpdated')
+    this.searchedProduct = sessionStorage.getItem('searchedProduct')
+
+    if (this.searchedProduct == null)
+      this.searchedProduct = this.product
     
-    if (priceUpdated == 'true' && searchedProduct != null && searchedProduct != undefined) 
-    {      
-      this.handleSearchOffersResponse(searchedProduct)
-      sessionStorage.setItem('priceUpdated', 'false')
-    }    
+    if (this.priceUpdated == 'true' && this.searchedProduct != null && this.searchedProduct != undefined)
+      this.handleSearchOffersResponse(this.searchedProduct)
   }
 
   onSubmit() {
@@ -55,10 +56,9 @@ export class HomeComponent
     this.apiService.searchOffers(product).subscribe(
       {        
         next: (data: DataResponse) => {
-
           if (!product || data.products.length == 0) {
             var message = "Please enter the product you are looking for."
-            
+
             if (data.products.length == 0)
               message = `No offers for: ${product}`
 
@@ -70,20 +70,22 @@ export class HomeComponent
             productSearchTextarea.style.marginTop = '0'
 
             data.products.forEach( 
-              (product) => {    
+              (product) => {
 
-                if (typeof product.price === 'string')
+                if (typeof product.price === 'string') {
                   product.price = parseFloat(
                     product.price.replace(' zł', '').replace(',', '.')
                   );
+                }
 
                 product.image = `data:image/jpg;base64,${product.image}`;
               }
             )
 
-            data.products.sort((a: Product, b: Product) => {
-              return (a.price as number) - (b.price as number);
-            });
+            data.products.sort(
+              (a: Product, b: Product) => 
+                (a.price as number) - (b.price as number)
+            );
               
             this.data = data;
           }
@@ -108,7 +110,7 @@ export class HomeComponent
     )
   }
 
-  openAddOfferModal() {
-    this.dialog.open(ModalAddOfferComponent, {data: this.product })
+  openAddOfferModal() {    
+    this.dialog.open(ModalAddOfferComponent, {data: this.searchedProduct })
   }
 }

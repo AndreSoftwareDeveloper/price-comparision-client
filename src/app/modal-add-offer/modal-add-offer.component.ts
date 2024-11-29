@@ -16,10 +16,10 @@ export class ModalAddOfferComponent {
    offer: Offer
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public previouslySearched: { searchedProduct: string },
+    @Inject(MAT_DIALOG_DATA) public searchedProduct: string,
     private apiService: ApiService,
     private dialog: MatDialog,
-    private modalAddOffer: MatDialogRef<ModalAddOfferComponent>,    
+    private modalAddOffer: MatDialogRef<ModalAddOfferComponent>,
   ) {
     this.offer = {
       shop: "",
@@ -33,15 +33,13 @@ export class ModalAddOfferComponent {
     document.getElementById("image")?.click()
   }
 
-  onFileSelected(event: Event): void 
-  {
+  onFileSelected(event: Event): void {
     const fileInput = event.target as HTMLInputElement;
     if (fileInput && fileInput.files && fileInput.files.length > 0)
       this.offer.image = fileInput.files[0];    
   }  
 
-  submitForm() 
-  {    
+  submitForm() {    
     const formData: Offer = {
       shop: this.offer.shop,
       price: this.offer.price,
@@ -51,7 +49,7 @@ export class ModalAddOfferComponent {
 
     this.apiService.addOffer(formData).subscribe(
       {
-        next: (next) => {
+        next: () => {
           this.modalAddOffer.close()
           this.modalAddOffer.afterClosed().subscribe(
             () => this.dialog.open(
@@ -59,8 +57,7 @@ export class ModalAddOfferComponent {
               { data: "An offer has been added successfully!" }
             )
           )
-          console.log(next)
-          sessionStorage.setItem('searchedProduct', formData.name)
+          sessionStorage.setItem('searchedProduct', this.searchedProduct)
           sessionStorage.setItem('priceUpdated', 'true')
           location.reload();
         },
