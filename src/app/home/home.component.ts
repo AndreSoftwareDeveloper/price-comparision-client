@@ -29,11 +29,15 @@ export class HomeComponent {
     this.priceUpdated = sessionStorage.getItem('priceUpdated')
     this.searchedProduct = sessionStorage.getItem('searchedProduct')
 
-    if (this.searchedProduct == null)
+    if (this.searchedProduct == null || this.searchedProduct == "")
       this.searchedProduct = this.product
     
-    if (this.priceUpdated == 'true' && this.searchedProduct != null && this.searchedProduct != undefined)
+    if (this.priceUpdated == 'true' && this.searchedProduct != undefined) {
+      console.log(this.product)
+      console.log(this.searchedProduct)
       this.handleSearchOffersResponse(this.searchedProduct)
+    }
+      
   }
 
   onSubmit() {
@@ -71,12 +75,11 @@ export class HomeComponent {
 
             data.products.forEach( 
               (product) => {
-
-                if (typeof product.price === 'string') {
+                
+                if (typeof product.price === 'string')
                   product.price = parseFloat(
                     product.price.replace(' zł', '').replace(',', '.')
-                  );
-                }
+                  );                
 
                 product.image = `data:image/jpg;base64,${product.image}`;
               }
@@ -96,21 +99,26 @@ export class HomeComponent {
         }
       }
     );
+
+    sessionStorage.setItem('priceUpdated', 'false')
   }
 
-  openUpdatePriceModal(id: number, searchedProduct: string) {
+  openUpdatePriceModal(id: number) {
+    if (this.searchedProduct == "")
+      this.searchedProduct = this.product
+
     this.dialog.open(
       ModalUpdatePriceComponent, 
       {
         data: {
           id: id,
-          product: searchedProduct
+          product: this.searchedProduct
         }
       }
     )
   }
 
-  openAddOfferModal() {    
+  openAddOfferModal() {
     this.dialog.open(ModalAddOfferComponent, {data: this.searchedProduct })
   }
 }

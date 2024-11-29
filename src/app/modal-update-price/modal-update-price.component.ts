@@ -38,7 +38,7 @@ export class ModalUpdatePriceComponent {
             () => {
               this.generalInfoModal = this.dialog.open(ModalGeneralInfoComponent, { data: next.message });
               this.generalInfoModal.afterClosed().subscribe(() => {
-                sessionStorage.setItem('searchedProduct', this.data.product) //TODO product should be in priceUpdateData
+                sessionStorage.setItem('searchedProduct', this.data.product)
                 sessionStorage.setItem('priceUpdated', 'true')
                 location.reload();
               });

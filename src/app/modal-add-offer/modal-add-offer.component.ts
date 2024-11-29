@@ -50,15 +50,16 @@ export class ModalAddOfferComponent {
     this.apiService.addOffer(formData).subscribe(
       {
         next: () => {
+          sessionStorage.setItem('searchedProduct', this.searchedProduct) //TODO move to the separete method
+          sessionStorage.setItem('priceUpdated', 'true')
+
           this.modalAddOffer.close()
           this.modalAddOffer.afterClosed().subscribe(
             () => this.dialog.open(
               ModalGeneralInfoComponent,
               { data: "An offer has been added successfully!" }
             )
-          )
-          sessionStorage.setItem('searchedProduct', this.searchedProduct)
-          sessionStorage.setItem('priceUpdated', 'true')
+          )            
           location.reload();
         },
         error: (error: HttpErrorResponse) => {

@@ -29,7 +29,7 @@
       <button type="submit" 
               class="updatePriceButton" 
               *ngIf="isLogged" 
-              (click)="openUpdatePriceModal(data.products[0].id, this.product)">
+              (click)="openUpdatePriceModal(data.products[0].id)">
               Update price
       </button>
 
@@ -48,7 +48,7 @@
         <button type="submit" 
                 class="updatePriceButton" 
                 *ngIf="isLogged" 
-                (click)="openUpdatePriceModal(offer.id, this.product)">
+                (click)="openUpdatePriceModal(offer.id)">
                 Update price
         </button>
       </div>
