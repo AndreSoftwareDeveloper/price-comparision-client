@@ -21,8 +21,7 @@ export class ApiService {
 
     constructor(private http: HttpClient) {}
     
-    searchOffers(name: string): Observable<DataResponse>
-    {
+    searchOffers(name: string): Observable<DataResponse> {
       const params = new HttpParams().set('name', name);
       return this.http.get<DataResponse>(
         `${this.api_endpoint}`, 
@@ -30,8 +29,7 @@ export class ApiService {
       );
     }
 
-    signUp(userData: User)
-    {
+    signUp(userData: User) {
       return this.http.post(this.register_endpoint, userData).pipe(
         map(
           (response) => response
@@ -42,8 +40,7 @@ export class ApiService {
       );
     }
 
-    signIn(userData: string)
-    {
+    signIn(userData: string) {
       const headers = new HttpHeaders({
         'Content-Type': 'application/x-www-form-urlencoded',
       });
@@ -61,8 +58,7 @@ export class ApiService {
       );
     }
 
-    checkVerificationToken(token: string)
-    {
+    checkVerificationToken(token: string) {
       const params = new HttpParams().set('verification_token', token);
       return this.http.post(
         this.account_verification_endpoint, {}, { params }
@@ -76,8 +72,7 @@ export class ApiService {
       );
     }
 
-    updatePrice(updateData: PriceUpdateData)
-    {
+    updatePrice(updateData: PriceUpdateData) {
       return this.http.patch<ApiResponse>(this.api_endpoint, updateData).pipe(
         map(
           (response) => response          
@@ -92,8 +87,7 @@ export class ApiService {
       );
     }
 
-    addOffer(offer: Offer)
-    {
+    addOffer(offer: Offer) {
       const formData = new FormData();
       formData.append('shop', offer.shop);
       formData.append('price', offer.price.toString());

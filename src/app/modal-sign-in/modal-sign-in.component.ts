@@ -25,12 +25,9 @@ export class ModalSignInComponent {
     }
   }
   
-  submitForm() 
-  {
+  submitForm() {
     this.signInErrorVisibility = false
-    if (!this.signInForm.emailOrUsername || 
-        !this.signInForm.password
-    ) {
+    if (!this.signInForm.emailOrUsername || !this.signInForm.password) {
       alert("Fill all required fields.");
       return;
     }
@@ -52,8 +49,7 @@ export class ModalSignInComponent {
     );
   }
 
-  openSignUpModal(): void 
-  {
+  openSignUpModal(): void {
     this.signInRef.close();
     this.signInRef.afterClosed().subscribe(
       () => {

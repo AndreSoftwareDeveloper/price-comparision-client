@@ -28,8 +28,7 @@ export class ModalSignUpComponent {
     private dialogRef: MatDialogRef<ModalSignUpComponent>
   ) {}
 
-  submitForm() 
-  {
+  submitForm() {
     this.passwordRequirementsVisibility = false
 
     if (!this.signUpForm.username ||
@@ -42,8 +41,7 @@ export class ModalSignUpComponent {
       return;
     }
 
-    if (this.signUpForm.password !== this.signUpForm.repeatPassword) 
-    {
+    if (this.signUpForm.password !== this.signUpForm.repeatPassword) {
       this.passwordRequirementsVisibility = true
       this.errorMessage = "Passwords must be the same."
       return;

@@ -8,6 +8,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
   styleUrl: './modal-general-info.component.scss'
 })
 export class ModalGeneralInfoComponent {
+  
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: {message: string},
     private dialogRef: MatDialogRef<ModalGeneralInfoComponent>
