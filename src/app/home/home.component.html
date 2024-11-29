@@ -5,7 +5,7 @@
     <button mat-button *ngIf="!isLogged" (click)="openSignInModal()" id="signInOut">SIGN IN</button>
     
     <button mat-button *ngIf="isLogged" (click)="logOut()" id="signInOut">LOG OUT</button> <br> <br>
-    <span> <h2 *ngIf="isLogged"> QQQQ </h2> </span>
+    <span> <h2 *ngIf="isLogged" id="username"> QQQQ </h2> </span>
   </div>
 </div>
 

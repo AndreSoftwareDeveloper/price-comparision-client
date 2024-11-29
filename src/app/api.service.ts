@@ -7,7 +7,7 @@ import { User } from "./models/user.model";
 import { ApiResponse } from "./models/api-response.model";
 import { PriceUpdateData } from "./models/price-update-data.model";
 import { LoginResponse } from "./models/login-response.model";
-import { Dupa } from "./modal-add-offer/modal-add-offer.component";
+import { Offer } from "./models/offer.model";
 
 @Injectable({
     providedIn: 'root',
@@ -92,7 +92,7 @@ export class ApiService {
       );
     }
 
-    addOffer(offer: Dupa)
+    addOffer(offer: Offer)
     {
       const formData = new FormData();
       formData.append('shop', offer.shop);

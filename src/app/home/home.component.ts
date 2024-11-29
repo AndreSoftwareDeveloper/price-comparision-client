@@ -69,11 +69,17 @@ export class HomeComponent
             const productSearchTextarea = document.getElementById("product")!
             productSearchTextarea.style.marginTop = '0'
 
-            data.products.forEach( (product) => {              
-              if (typeof product.price === 'string')
-                product.price = parseFloat(product.price.replace(' zł', '').replace(',', '.'));
-              product.image = `data:image/jpg;base64,${product.image}`;
-            })
+            data.products.forEach( 
+              (product) => {    
+
+                if (typeof product.price === 'string')
+                  product.price = parseFloat(
+                    product.price.replace(' zł', '').replace(',', '.')
+                  );
+
+                product.image = `data:image/jpg;base64,${product.image}`;
+              }
+            )
 
             data.products.sort((a: Product, b: Product) => {
               return (a.price as number) - (b.price as number);
@@ -94,15 +100,15 @@ export class HomeComponent
     this.dialog.open(
       ModalUpdatePriceComponent, 
       {
-        data: { 
+        data: {
           id: id,
           product: searchedProduct
-      }
+        }
       }
     )
   }
 
   openAddOfferModal() {
-    this.dialog.open(ModalAddOfferComponent)
+    this.dialog.open(ModalAddOfferComponent, {data: this.product })
   }
 }
