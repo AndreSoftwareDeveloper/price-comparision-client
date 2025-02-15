@@ -13,24 +13,27 @@ import { Offer } from "./models/offer.model";
     providedIn: 'root',
 })
 export class ApiService {
-    private api_endpoint = 'http://127.0.0.1:8000';
-    private register_endpoint = 'http://127.0.0.1:8000/register';
-    private login_endpoint = 'http://127.0.0.1:8000/login';
-    private account_verification_endpoint = 'http://127.0.0.1:8000/verify_account'
-    private add_offer_endpoint = 'http://127.0.0.1:8000/add_offer';
+    private api_base_endpoint = 'http://127.0.0.1:8000';
+
+    private api_endpoints = {
+      register: `${this.api_base_endpoint}/register`,
+      login: `${this.api_base_endpoint}/login`,
+      account_verification: `${this.api_base_endpoint}/verify_account`,
+      add_offer: `${this.api_base_endpoint}/add_offer`
+    };
 
     constructor(private http: HttpClient) {}
     
     searchOffers(name: string): Observable<DataResponse> {
       const params = new HttpParams().set('name', name);
       return this.http.get<DataResponse>(
-        `${this.api_endpoint}`, 
+        `${this.api_base_endpoint}`, 
         { params }
       );
     }
 
     signUp(userData: User) {
-      return this.http.post(this.register_endpoint, userData).pipe(
+      return this.http.post(this.api_endpoints.register, userData).pipe(
         map(
           (response) => response
         ),
@@ -46,7 +49,7 @@ export class ApiService {
       });
 
       return this.http.post<LoginResponse>(
-        this.login_endpoint, userData, { headers }
+        this.api_endpoints.login, userData, { headers }
       ).pipe(
           map(
             (response) => response
@@ -61,7 +64,7 @@ export class ApiService {
     checkVerificationToken(token: string) {
       const params = new HttpParams().set('verification_token', token);
       return this.http.post(
-        this.account_verification_endpoint, {}, { params }
+        this.api_endpoints.account_verification, {}, { params }
       ).pipe(
           map(
             (response) => response
@@ -73,7 +76,7 @@ export class ApiService {
     }
 
     updatePrice(updateData: PriceUpdateData) {
-      return this.http.patch<ApiResponse>(this.api_endpoint, updateData).pipe(
+      return this.http.patch<ApiResponse>(this.api_base_endpoint, updateData).pipe(
         map(
           (response) => response          
         ),
@@ -96,7 +99,7 @@ export class ApiService {
       if (offer.image)
         formData.append('image', offer.image);      
     
-      return this.http.post(this.add_offer_endpoint, formData).pipe(
+      return this.http.post(this.api_endpoints.add_offer, formData).pipe(
         map(
           (response) => response     
         ),
