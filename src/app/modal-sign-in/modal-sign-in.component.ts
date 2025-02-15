@@ -40,6 +40,7 @@ export class ModalSignInComponent {
       {
         next: () => {
           HomeComponent.logged = true
+          sessionStorage.setItem('logged', 'true');
           this.signInRef.close();
         },
         error: () => {

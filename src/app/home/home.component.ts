@@ -18,9 +18,11 @@ export class HomeComponent {
   title: string = 'price-comparision-client';
   product: string = '';
   data?: DataResponse;
-  static logged: boolean = false
+  static logged: boolean;
   
-  constructor(private apiService: ApiService, private dialog: MatDialog) {}
+  constructor(private apiService: ApiService, private dialog: MatDialog) {
+    HomeComponent.logged = sessionStorage.getItem('logged') === 'true';
+  }
 
   priceUpdated: string | null = ""
   searchedProduct: string | null = ""
@@ -32,12 +34,8 @@ export class HomeComponent {
     if (this.searchedProduct == null || this.searchedProduct == "")
       this.searchedProduct = this.product
     
-    if (this.priceUpdated == 'true' && this.searchedProduct != undefined) {
-      console.log(this.product)
-      console.log(this.searchedProduct)
-      this.handleSearchOffersResponse(this.searchedProduct)
-    }
-      
+    if (this.priceUpdated == 'true' && this.searchedProduct != undefined)
+      this.handleSearchOffersResponse(this.searchedProduct)      
   }
 
   onSubmit() {
@@ -50,6 +48,7 @@ export class HomeComponent {
 
   logOut() {
     HomeComponent.logged = false;
+    sessionStorage.setItem('logged', 'false');
   }
 
   get isLogged() {
