@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AccountActivationComponent } from './account-activation.component';
+import { AccountVerificationComponent } from './account-verification.component';
 
 describe('AccountActivationComponent', () => {
-  let component: AccountActivationComponent;
-  let fixture: ComponentFixture<AccountActivationComponent>;
+  let component: AccountVerificationComponent;
+  let fixture: ComponentFixture<AccountVerificationComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AccountActivationComponent]
+      imports: [AccountVerificationComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(AccountActivationComponent);
+    fixture = TestBed.createComponent(AccountVerificationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

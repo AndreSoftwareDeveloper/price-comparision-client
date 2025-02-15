@@ -5,7 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
-import { AccountActivationComponent } from './account-activation/account-activation.component';
+import { AccountVerificationComponent } from './account-verification/account-verification.component';
 import { ApiService } from './api.service';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -17,7 +17,7 @@ import { ModalAddOfferComponent } from './modal-add-offer/modal-add-offer.compon
 
 @NgModule({ 
   declarations: [
-    AccountActivationComponent,
+    AccountVerificationComponent,
     AppComponent,
     HomeComponent,
     ModalSignInComponent,

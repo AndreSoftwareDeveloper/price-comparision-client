@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 
-import { AccountActivationComponent } from './account-activation/account-activation.component';
+import { AccountVerificationComponent } from './account-verification/account-verification.component';
 import { HomeComponent } from './home/home.component';
 
 export const routes: Routes = [
@@ -15,6 +15,6 @@ export const routes: Routes = [
     },
     {
         path: 'account-activation',
-        component: AccountActivationComponent
+        component: AccountVerificationComponent
     }
 ];

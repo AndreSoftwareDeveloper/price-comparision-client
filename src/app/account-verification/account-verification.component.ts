@@ -4,12 +4,12 @@ import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../api.service';
 
 @Component({
-  selector: 'app-account-activation',
+  selector: 'app-account-verification',
   standalone: false,  
-  templateUrl: './account-activation.component.html',
-  styleUrl: './account-activation.component.scss'
+  templateUrl: './account-verification.component.html',
+  styleUrl: './account-verification.component.scss'
 })
-export class AccountActivationComponent {
+export class AccountVerificationComponent {
   token: string = ""
   token_valid: boolean = false
 
